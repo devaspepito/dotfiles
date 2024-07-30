@@ -11,3 +11,9 @@ git clone https://github.com/devaspepito/archDots.git ~
 ```
 cp -r ~/archDots/.config/* ~/.config/
 ```
+
+3. Copy the .zshrc and .tmux.conf files to home
+
+```
+cp -r ~/archDots/.zshrc ~ && cp -r ~/archDots/.tmux.conf ~
+```
