@@ -85,6 +85,7 @@ alias lc=clear
 
 alias g=git
 alias gc='git clone'
+alias ga='git add'
 alias gaa='git add .'
 alias gcm='git commit'
 alias gc-m='git commit -m'
@@ -104,7 +105,6 @@ alias r=ranger
 alias h=htop
 alias neo=neofetch
 alias fast=fastfetch
-alias flash=flashfetch
 alias nerd=nerdfetch
 alias fixhour='sudo ntpd -qg && sudo hwclock -w'
 alias udb='sudo updatedb'
@@ -140,7 +140,11 @@ eval "$(zoxide init zsh)"
 
 # cowsay with fortune
 
-fortune | cowsay
+# fortune | cowsay
+
+# fastfetch
+
+fastfetch
 
 # powerlevel10k
 
