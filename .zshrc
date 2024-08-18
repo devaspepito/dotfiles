@@ -105,6 +105,7 @@ alias r=ranger
 alias h=htop
 alias neo=neofetch
 alias fast=fastfetch
+alias pfe=pfetch
 alias nerd=nerdfetch
 alias fixhour='sudo ntpd -qg && sudo hwclock -w'
 alias udb='sudo updatedb'
