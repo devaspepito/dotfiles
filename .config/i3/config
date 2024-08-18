@@ -17,16 +17,16 @@
 
 # Key to rule them all : Super(Windows) or Alt key - see definition above
 # set Super key
-set $mod Mod1
+set $mod Mod4
 
 ################# Define the movements keys - variables
 
 # This is setup for qwerty
 # set $right to m if using azerty keyboard
-set $up l
-set $down k
-set $left j
-set $right semicolon 
+set $up k
+set $down j
+set $left h
+set $right e 
 
 ################# Single and Dual screen
 
@@ -45,20 +45,6 @@ focus_follows_mouse no
 # exec --no-startup-id xrandr --output DVI-1 --right-of DVI-0 --auto
 # exec --no-startup-id xrandr --output DVI-D-1 --right-of DVI-I-1 --auto
 # exec --no-startup-id xrandr --output HDMI-2 --right-of HDMI-1 --auto
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-# using names instead of numbers for the workspaces
-# set $ws1 "1: Terminal"
-# set $ws2 "2: Browser"
-# set $ws3 "3: Mail"
-# set $ws4 "4: File Manager"
-
-# switch to workspace
-#bindsym $mod+1 workspace $ws1
-#bindsym $mod+2 workspace $ws2
-#bindsym $mod+3 workspace $ws3
-#bindsym $mod+4 workspace $ws4
 
 # current setup
 
@@ -125,17 +111,11 @@ bindsym $mod+shift+o exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63
 # start rofi
 bindsym $mod+o exec --no-startup-id ~/.config/i3/launcher/launcher.sh
 
-# start xfce4-appfinder
-bindsym mod4+F2 exec --no-startup-id xfce4-appfinder --collapsed
-
-# start xfce-appfinder
-bindsym mod4+F3 exec --no-startup-id xfce4-appfinder
-
 ################# how to exit, logoff, suspend, ...
 
 # Backup exit
 # Press ctrl+alt+x - check toolbar for next choices
-bindsym control+mod4+X mode "$mode_system"
+bindsym control+mod1+X mode "$mode_system"
 
 set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
 mode "$mode_system" {
@@ -152,9 +132,7 @@ mode "$mode_system" {
 }
 
 # ArcoLinux Logout
-bindsym $mod+Shift+e exec --no-startup-id archlinux-logout
 bindsym $mod+X exec --no-startup-id archlinux-logout
-bindsym $mod+Shift+X exec --no-startup-id arcolinux-powermenu
 
 ################# reload changed configuration     
 
@@ -205,13 +183,13 @@ bindsym $mod+Shift+Right move right
 
 # next/previous workspace
 
-bindsym mod4+Tab workspace next
-bindsym mod4+Shift+Tab workspace prev
+bindsym mod1+Tab workspace next
+bindsym mod1+Shift+Tab workspace prev
 bindsym $mod+Tab workspace back_and_forth
 
 # navigate workspaces next / previous
-bindsym mod4+Ctrl+Right workspace next
-bindsym mod4+Ctrl+Left workspace prev
+bindsym mod1+Ctrl+Right workspace next
+bindsym mod1+Ctrl+Left workspace prev
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -222,7 +200,7 @@ for_window [urgent=latest] focus
 default_orientation horizontal
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+l split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -235,7 +213,7 @@ bindsym $mod+Shift+f fullscreen toggle
 # qwerty/azerty issue for letter z
 bindsym $mod+s layout stacking
 bindsym $mod+z layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+semicolon layout toggle split
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -248,97 +226,54 @@ bindsym $mod+a focus parent
 
 ################# resize  
 
+
 # Resizing by 1
-bindsym $mod+Ctrl+Right resize shrink width 5 px or 5 ppt
-bindsym $mod+Ctrl+Up resize grow height 5 px or 5 ppt
-bindsym $mod+Ctrl+Down resize shrink height 5 px or 5 ppt
-bindsym $mod+Ctrl+Left resize grow width 5 px or 5 ppt
+bindsym $mod+Ctrl+e resize shrink width 7 px 
+bindsym $mod+Ctrl+k resize grow height 7 px 
+bindsym $mod+Ctrl+j resize shrink height 7 px 
+bindsym $mod+Ctrl+h resize grow width 7 px 
 
 # old resize keybindings
 # resize window (you can also use the mouse for that)
 
-# bindsym $mod+r mode "resize"
+bindsym $mod+r mode "resize"
 
-# mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+mode "resize" {
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
- #      bindsym $left       resize shrink width 10 px or 10 ppt
- #      bindsym $down       resize grow height 10 px or 10 ppt
- #      bindsym $up         resize shrink height 10 px or 10 ppt
- #      bindsym $right      resize grow width 10 px or 10 ppt
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+    bindsym $left       resize shrink width 10 px or 10 ppt
+    bindsym $down       resize grow height 10 px or 10 ppt
+    bindsym $up         resize shrink height 10 px or 10 ppt
+    bindsym $right      resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
- #      bindsym Left        resize shrink width 10 px or 10 ppt
- #      bindsym Down        resize grow height 10 px or 10 ppt
- #      bindsym Up          resize shrink height 10 px or 10 ppt
- #      bindsym Right       resize grow width 10 px or 10 ppt
+# same bindings, but for the arrow keys
+    bindsym Left        resize shrink width 10 px or 10 ppt
+    bindsym Down        resize grow height 10 px or 10 ppt
+    bindsym Up          resize shrink height 10 px or 10 ppt
+    bindsym Right       resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
- #      bindsym Return mode "default"
- #      bindsym Escape mode "default"
-# }
+# back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 ################# choose the font                  
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # choose your font
-font pango:Noto Mono Regular 13
-
-################# assign applications to workspaces 
-
-# Assign application to start on a specific workspace
-# you can find the class with the program xprop
-
-# Example - make browser start on workspace 3
-# assign [class="Firefox|Vivaldi-stable|Vivaldi-snapshot|Opera"]                      → 3
-# assign [class="Chromium|Google-chrome"]                    → 3
-
-# Workspace 2 text editor related
-# assign [class="sublime-text|sublime_text|Sublime_text|subl|Subl|subl3|Subl3"]       → 2
-# assign [class="Xed|xed|Brackets|Atom|Code|Geany"]                                   → 2
-
-# Workspace 3 Inkscape
-# assign [class="Inkscape"]                                                           → 3
-
-# Workspace 4 Gimp
-# assign [class="Gimp"]                                                               → 4
-
-# Workspace 5 Images and meld
-# assign [class="ristretto|Ristretto|shotwell|Shotwell|Xviewer|Nitrogen"]             → 5
-# assign [class="feh|gthumb|Gthumb|eog|Eog|Pinta|pixeluvo|Pixeluvo"]                  → 5
-# assign [class="Meld"]                                                               → 5
-
-# Workspace 6 all video related software
-# assign [class="Vlc|vlc"]                                                            → 6
-
-# Workspace 7 virtual machines and settings
-# assign [class="Vmplayer|VirtualBox"]						    → 7
-
-# Workspace 8 file managers
-# assign [class="Nemo|Thunar|Caja|nautilus|Nautilus"]                                 → 8
-
-# Workspace 9 email clients
-# assign [class="Geary|Evolution"]                                                    → 9
-
-# Workspace 10 music related
-# assign [class="Spotify|spotify"]                                                    → 10
-# fix for spotify not moving to workspace 10
-# for_window [class="Spotify"] move to workspace 10
+font pango: IosevkaTerm Nerd Font 10
 
 ################# autostart - execute applications at boot time
 
 # USER APPLICATIONS TO START AT BOOT
 
-# ArcoLinux Welcome App
-exec --no-startup-id dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
-
 # Autotiling
-exec_always --no-startup-id autotiling
+# exec_always --no-startup-id autotiling
 
 # TRAY APPLICATIONS
 
@@ -349,16 +284,13 @@ exec_always --no-startup-id autotiling
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Updater
-exec --no-startup-id pamac-tray
+# exec --no-startup-id pamac-tray
 
 # bluetooth
 # exec --no-startup-id blueberry-tray
 
 # network
 exec --no-startup-id nm-applet
-
-# num lock activated
-exec_always --no-startup-id numlockx on
 
 # dropbox
 # exec --no-startup-id dropbox start
@@ -368,7 +300,7 @@ exec_always --no-startup-id numlockx on
 
 # volume
 # exec --no-startup-id pasystray
-exec --no-startup-id volumeicon
+# exec --no-startup-id volumeicon
 
 # variety
 # exec --no-startup-id variety
@@ -378,13 +310,7 @@ exec --no-startup-id volumeicon
 
 
 # feh sets wallpaper
-# exec --no-startup-id feh --bg-fill /home/pepito/Pictures/wallpapers/keyboars.jpg &
-exec --no-startup-id feh --bg-fill /home/pepito/Pictures/wallpapers/wallpapers-minimalistics/videogames.jpg &
-# for other Arch Linux based distros
-# exec --no-startup-id feh --bg-fill /usr/share/archlinux-tweak-tool/data/wallpaper/wallpaper.png &
-
-# Polybar
-# exec_always --no-startup-id ~/.config/polybar/launch.sh &
+exec --no-startup-id feh --bg-fill /home/pepito/Pictures/wallpapers/wallpapers-minimalistics/rose-arbust.jpg &
 
 ################# system applications       
 
@@ -399,30 +325,30 @@ exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
 # not workspace related
 
 # ArcoLinux Welcome App
-bindsym control+mod4+w exec --no-startup-id arcolinux-welcome-app
+bindsym control+mod1+w exec --no-startup-id arcolinux-welcome-app
 
 # ArchLinux Tweak Tool
-bindsym control+mod4+e exec --no-startup-id archlinux-tweak-tool
+bindsym control+mod1+e exec --no-startup-id archlinux-tweak-tool
 
 # terminal
-bindsym $mod+Return exec --no-startup-id kitty;focus
-bindsym F12 exec --no-startup-id xfce4-terminal --drop-down; focus
+bindsym $mod+Return exec --no-startup-id kitty;
+bindsym $mod+Shift+Return exec --no-startup-id alacritty;
 
 # System monitor
 bindsym control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
 
 # settings
-bindsym control+mod4+m exec --no-startup-id xfce4-settings-manager
+bindsym control+mod1+m exec --no-startup-id xfce4-settings-manager
 
 # catfish
-bindsym control+mod4+c exec --no-startup-id catfish;focus
+bindsym control+mod1+c exec --no-startup-id catfish;focus
 
 # archlinux-logout
-bindsym control+mod4+k exec --no-startup-id archlinux-logout
-bindsym control+mod4+l exec --no-startup-id archlinux-logout
+bindsym control+mod1+k exec --no-startup-id archlinux-logout
+bindsym control+mod1+l exec --no-startup-id archlinux-logout
 
 # rofi theme selector
-bindsym control+mod4+r exec --no-startup-id rofi-theme-selector
+bindsym control+mod1+r exec --no-startup-id rofi-theme-selector
 
 # arcolinux conflict
 # bindsym $mod+m exec --no-startup-id pragha;focus
@@ -432,59 +358,29 @@ bindsym control+mod4+r exec --no-startup-id rofi-theme-selector
 # bindsym $mod+h exec --no-startup-id htop;focus
 
 # pavucontrol
-bindsym control+mod4+u exec --no-startup-id pavucontrol
-
-# start xfce-appfinder
-# arcolinux does not seem to work
-bindsym control+mod4+a exec --no-startup-id xfce4-appfinder
+bindsym control+mod1+u exec --no-startup-id pavucontrol
 
 # pamac-manager
-bindsym control+mod4+p exec --no-startup-id pamac-manager
+bindsym control+mod1+p exec --no-startup-id pamac-manager
 
 # xkill
 bindsym --release $mod+Escape exec xkill
 
 # Function Keybinds
 # Browser
-bindsym $mod+F1 exec --no-startup-id exo-open --launch webbrowser;focus
-# qwerty/azerty conflict with w
-bindsym $mod+w exec --no-startup-id brave;focus
+bindsym $mod+w exec --no-startup-id brave-beta;focus
+
+# discord
+bindsym $mod+d exec --no-startup-id discord;focus
 
 # Text Editor
-# bindsym $mod+F2 exec --no-startup-id geany;focus
 bindsym $mod+c exec --no-startup-id code;focus
 
-# Basic Draw Tool
-bindsym $mod+F3 exec --no-startup-id inkscape;focus
-
-# Advanced Draw Tool
-bindsym $mod+F4 exec --no-startup-id gimp;focus
-
-# document comparison
-bindsym $mod+F5 exec --no-startup-id meld;focus
-bindsym control+mod4+i exec --no-startup-id nitrogen;focus
-
-# video player
-bindsym $mod+F6 exec --no-startup-id vlc;focus
-
 # virtual machine
-bindsym $mod+F7 exec --no-startup-id virtualbox;focus
-
-# file management
-for_window [class="Thunar"] focus
-bindsym $mod+F8 exec --no-startup-id thunar;focus
-bindsym $mod+Shift+Return exec --no-startup-id thunar;focus
-bindsym $mod+Shift+KP_Enter exec --no-startup-id thunar;focus
-bindsym control+mod4+b exec --no-startup-id thunar;focus
-
-# Audio application
-bindsym $mod+F9 exec --no-startup-id lollypop;focus
-# bindsym $mod+F9 exec --no-startup-id geary;focus
-# bindsym control+mod4+e exec --no-startup-id geary;focus
+bindsym $mod+mod1+v exec --no-startup-id virtualbox;focus
 
 # music
-bindsym $mod+F10 exec --no-startup-id spotify;focus
-bindsym control+mod4+s exec --no-startup-id spotify;focus
+bindsym control+mod1+s exec --no-startup-id spotify;focus
 
 ################# screenshots                      
 
@@ -551,32 +447,32 @@ for_window [class="Alacritty"] focus
 
 ################# variety for wallpapers      
 
-# Variety keybindings mod4 = ALT
+# Variety keybindings mod1 = ALT
 # trash wallpaper
-bindsym mod4+t exec --no-startup-id variety -t
+bindsym mod1+t exec --no-startup-id variety -t
 # next wallpaper
-bindsym mod4+n exec --no-startup-id variety -n
-bindsym mod4+Right exec --no-startup-id variety -n
+bindsym mod1+n exec --no-startup-id variety -n
+bindsym mod1+Right exec --no-startup-id variety -n
 # previous wallpaper
-bindsym mod4+p exec --no-startup-id variety -p
-bindsym mod4+Left exec --no-startup-id variety -p
+bindsym mod1+p exec --no-startup-id variety -p
+bindsym mod1+Left exec --no-startup-id variety -p
 # favorite wallpaper
-bindsym mod4+f exec --no-startup-id variety -f
+bindsym mod1+f exec --no-startup-id variety -f
 # pause wallpaper
-bindsym mod4+Up exec --no-startup-id variety --pause
+bindsym mod1+Up exec --no-startup-id variety --pause
 # resume wallpaper
-bindsym mod4+Down exec --no-startup-id variety --resume
+bindsym mod1+Down exec --no-startup-id variety --resume
 
 ################# variety with pywal for your wallpapers/colour schemes
 
 # next wallpaper
-bindsym mod4+Shift+n exec --no-startup-id variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+bindsym mod1+Shift+n exec --no-startup-id variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 # previous wallpaper
-bindsym mod4+Shift+p exec --no-startup-id variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+bindsym mod1+Shift+p exec --no-startup-id variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 # trash wallpaper
-bindsym mod4+Shift+t exec --no-startup-id variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+bindsym mod1+Shift+t exec --no-startup-id variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 # Update Wallpaper
-bindsym mod4+Shift+u exec --no-startup-id wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)
+bindsym mod1+Shift+u exec --no-startup-id wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)
 
 ################# audio settings                   
 
@@ -676,23 +572,23 @@ mode "$mode_gaps_outer" {
 # if you want transparency on non-focused windows, ...
 exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
 
-bindsym control+mod4+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
+bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 
 ################# bar appearance                   
 
 bar {
-    height 20
-    mode hide
-    hidden_state hide
+    height 18
+    mode dock
+    # mode hide
     workspace_buttons yes
-	font pango: FiraCode Nerd Font 10
-    position bottom
-    # position top
+	  font pango: IosevkaTerm Nerd Font 9
+    # position bottom
+    position top
 
 	# system icons
     # tray_output none
-    # tray_output $firstMonitor
-    # tray_output $secondMonitor
+    tray_output $firstMonitor
+    tray_output $secondMonitor
 
     # OPTION 1 : i3status
 
@@ -710,15 +606,15 @@ bar {
     # variable border background Text
 
     colors {
-        background #282828
-        statusline #ffffff
-        separator  #a9a9a9
+        background #2c2e34
+        statusline #e2e2e3
+        separator  #7f8490
 
         # colorclass           border  backgr. text
-        focused_workspace     #080808 #5f676a #eeeeee
-        active_workspace      #080808 #5f676a #eeeeee
-        inactive_workspace    #080808 #222222 #a9a9a9
-        urgent_workspace      #080808 #d42121 #FFFFFF
+        focused_workspace     #2c2e34 #76cce0 #181818
+        active_workspace      #2c2e34 #76cce0 #181818
+        inactive_workspace    #2c2e34 #222222 #a9a9a9
+        urgent_workspace      #2c2e34 #ff6077 #e1e3e4
         }
 
     }
@@ -733,14 +629,11 @@ bar {
     client.unfocused        #222222 #222222 #eeeeee #222222
     client.focused_inactive #222222 #222222 #282828 #222222
     client.placeholder      #222222 #222222 #eeeeee #222222
-    client.urgent           #d42121 #d42121 #f7f7f7 #d42121
+    client.urgent           #ff6077 #ff6077 #f7f7f7 #ff6077
 
     client.background       #a9a9a9
 
     ##STOP THEMING WM
 
-# albert
-exec --no-startup-id albert
-
-# screenkey
-exec --no-startup-id screenkey
+# powermode 
+exec --no-startup-id powermode-indicator
