@@ -5,6 +5,12 @@
 # ██████╔╝███████╗ ╚████╔╝ ██║  ██║███████║██║ ╚═╝ ██║██║  ██║██╔╝ ██╗    ██████╔╝╚██████╔╝   ██║   ███████║    ███████╗███████║██║  ██║
 # ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝    ╚══════╝╚══════╝╚═╝  ╚═╝
 
+fpath+=$HOME/.zsh/typewritten
+autoload -U promptinit; promptinit
+prompt typewritten
+
+ZSH_THEME="typewritten"
+
 #  ▄▄▄·▄▄▌  ▄• ▄▌ ▄▄ • ▪   ▐ ▄ .▄▄ · 
 # ▐█ ▄███•  █▪██▌▐█ ▀ ▪██ •█▌▐█▐█ ▀. 
 #  ██▀·██▪  █▌▐█▌▄█ ▀█▄▐█·▐█▐▐▌▄▀▀▀█▄
@@ -99,6 +105,7 @@ alias la='ls -a'
 alias ll='l -l'
 alias lla='ll -a'
 alias ..='cd ..'
+alias ...=cd
 
 alias q=exit
 alias r=ranger
@@ -114,14 +121,6 @@ alias sozsh='source .zshrc'
 alias alaup='rm -rf ~/.config/alacritty/alacritty.toml && rm -rf ~/.config/alacritty/alacritty.toml.bak && alacritty migrate'
 alias sdcu='sudo docker-compose up -d'
 alias sdcd='sudo docker-compose down'
-
-# ▄▄▄▄▄• ▌ ▄ ·. ▄• ▄▌▐▄• ▄ 
-# •██  ·██ ▐███▪█▪██▌ █▌█▌▪
-#  ▐█.▪▐█ ▌▐▌▐█·█▌▐█▌ ·██· 
-#  ▐█▌·██ ██▌▐█▌▐█▄█▌▪▐█·█▌
-#  ▀▀▀ ▀▀  █▪▀▀▀ ▀▀▀ •▀▀ ▀▀
-
-# if [ "$TMUX" = "" ]; then exec tmux new-session -A -s home; fi
 
 #  ▄ .▄      • ▌ ▄ ·. ▄▄▄ .▄▄▄▄· ▄▄▄  ▄▄▄ .▄▄▌ ▐ ▄▌
 # ██▪▐█▪     ·██ ▐███▪▀▄.▀·▐█ ▀█▪▀▄ █·▀▄.▀·██· █▌▐█
@@ -146,20 +145,6 @@ eval "$(zoxide init zsh)"
 # fastfetch
 
 fastfetch
-
-# powerlevel10k
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ███████╗███╗   ██╗██████╗      ██████╗ ███████╗    ██████╗  ██████╗ ████████╗███████╗
 # ██╔════╝████╗  ██║██╔══██╗    ██╔═══██╗██╔════╝    ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
