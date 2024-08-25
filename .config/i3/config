@@ -103,48 +103,46 @@ bindsym $mod+Shift+8 move container to workspace 8; workspace 8
 bindsym $mod+Shift+9 move container to workspace 9; workspace 9
 bindsym $mod+Shift+0 move container to workspace 10; workspace 10
 
-################# menu's in arcolinux
+# ArchLinux menus
 
-# start dmenu
-bindsym $mod+shift+o exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
+# dmenu
+bindsym $mod+mod1+o exec --no-startup-id dmenu_run -i -nb '#1a181a' -nf '#7accd7' -sb '#7accd7' -sf '#1a181a' -fn 'IosevkaTermNerdFont:bold:italic:pixelsize=12'
 
-# start rofi
-bindsym $mod+o exec --no-startup-id ~/.config/i3/launcher/launcher.sh
+# rofi
+bindsym $mod+o exec --no-startup-id ~/.config/i3/rofi/drun.sh
+bindsym $mod+Shift+o exec --no-startup-id ~/.config/i3/rofi/run.sh
+bindsym $mod+ctrl+o exec --no-startup-id ~/.config/i3/rofi/window.sh
 
-################# how to exit, logoff, suspend, ...
+# Lock-Logout-Suspenr-Hibernate-Reboot-Shutdown
 
-# Backup exit
-# Press ctrl+alt+x - check toolbar for next choices
-bindsym control+mod1+X mode "$mode_system"
+# alt+x
+bindsym mod1+x mode "$mode_system"
 
 set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
 mode "$mode_system" {
-    bindsym k exec --no-startup-id ~/.config/i3/scripts/i3exit.sh lock, mode "default"
-    bindsym l exec --no-startup-id ~/.config/i3/scripts/i3exit.sh logout, mode "default"
-    bindsym u exec --no-startup-id ~/.config/i3/scripts/i3exit.sh suspend, mode "default"
-    bindsym h exec --no-startup-id ~/.config/i3/scripts/i3exit.sh hibernate, mode "default"
-    bindsym r exec --no-startup-id ~/.config/i3/scripts/i3exit.sh reboot, mode "default"
-    bindsym s exec --no-startup-id ~/.config/i3/scripts/i3exit.sh shutdown, mode "default"
+    bindsym k exec --no-startup-id ~/.config/i3/exit/i3exit.sh lock, mode "default"
+    bindsym l exec --no-startup-id ~/.config/i3/exit/i3exit.sh logout, mode "default"
+    bindsym u exec --no-startup-id ~/.config/i3/exit/i3exit.sh suspend, mode "default"
+    bindsym h exec --no-startup-id ~/.config/i3/exit/i3exit.sh hibernate, mode "default"
+    bindsym r exec --no-startup-id ~/.config/i3/exit/i3exit.sh reboot, mode "default"
+    bindsym s exec --no-startup-id ~/.config/i3/exit/i3exit.sh shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
-    bindsym Escape mode "default"
 }
 
-# ArcoLinux Logout
-bindsym $mod+X exec --no-startup-id archlinux-logout
-
-################# reload changed configuration     
+# Reload - Restart - Quit i3
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # reload the configuration file
 bindsym $mod+Shift+c reload
+# quit i3
+bindsym $mod+Shift+q exit
 
-################# Stopping an application          
+# quit an aplication
 
 # kill focused window
-bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
 ################# Moving around in i3              
@@ -239,109 +237,58 @@ bindsym $mod+Ctrl+h resize grow width 7 px
 bindsym $mod+r mode "resize"
 
 mode "resize" {
-# These bindings trigger as soon as you enter the resize mode
+    bindsym $left       resize shrink width 2 px or 2 ppt
+    bindsym $down       resize grow height 2 px or 2 ppt
+    bindsym $up         resize shrink height 2 px or 2 ppt
+    bindsym $right      resize grow width 2 px or 2 ppt
 
-# Pressing left will shrink the window’s width.
-# Pressing right will grow the window’s width.
-# Pressing up will shrink the window’s height.
-# Pressing down will grow the window’s height.
-    bindsym $left       resize shrink width 10 px or 10 ppt
-    bindsym $down       resize grow height 10 px or 10 ppt
-    bindsym $up         resize shrink height 10 px or 10 ppt
-    bindsym $right      resize grow width 10 px or 10 ppt
-
-# same bindings, but for the arrow keys
-    bindsym Left        resize shrink width 10 px or 10 ppt
-    bindsym Down        resize grow height 10 px or 10 ppt
-    bindsym Up          resize shrink height 10 px or 10 ppt
-    bindsym Right       resize grow width 10 px or 10 ppt
+    bindsym Left        resize shrink width 2 px or 2 ppt
+    bindsym Down        resize grow height 2 px or 2 ppt
+    bindsym Up          resize shrink height 2 px or 2 ppt
+    bindsym Right       resize grow width 2 px or 2 ppt
 
 # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-################# choose the font                  
+# Font
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# choose your font
 font pango: IosevkaTerm Nerd Font 10
 
-################# autostart - execute applications at boot time
+# Autostart Applications
 
-# USER APPLICATIONS TO START AT BOOT
-
-# Autotiling
-# exec_always --no-startup-id autotiling
-
-# TRAY APPLICATIONS
-
-# applications that are not installed will not start
-# you may see a wheel - hashtag out things you do not want/need
+# powermode 
+exec --no-startup-id powermode-indicator &
 
 # Authentication dialog
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 
-# Updater
-# exec --no-startup-id pamac-tray
-
-# bluetooth
-# exec --no-startup-id blueberry-tray
+# dunst
+exec --no-startup-id dunst &
 
 # network
-exec --no-startup-id nm-applet
-
-# dropbox
-# exec --no-startup-id dropbox start
-
-# insync
-# exec --no-startup-id insync start
+exec --no-startup-id nm-applet &
 
 # volume
-# exec --no-startup-id pasystray
-# exec --no-startup-id volumeicon
-
-# variety
-# exec --no-startup-id variety
-
-# clipman
-# exec --no-startup-id xfce4-clipman
-
+exec --no-startup-id volumeicon &
 
 # feh sets wallpaper
-exec --no-startup-id feh --bg-fill /home/pepito/Pictures/wallpapers/wallpapers-minimalistics/rose-arbust.jpg &
-
-################# system applications       
-
-exec --no-startup-id xfce4-power-manager &
-# ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
-# IF xfsettingsd is activated you can not change themes
-# exec --no-startup-id xfsettingsd &
-exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/archWallpapers/archGrey.png &
 
 ################# applications keyboard shortcuts  
 
 # not workspace related
 
-# ArcoLinux Welcome App
-bindsym control+mod1+w exec --no-startup-id arcolinux-welcome-app
-
-# ArchLinux Tweak Tool
-bindsym control+mod1+e exec --no-startup-id archlinux-tweak-tool
-
 # terminal
 bindsym $mod+Return exec --no-startup-id kitty;
 bindsym $mod+Shift+Return exec --no-startup-id alacritty;
 
+# screenkey
+bindsym $mod+Shift+s exec --no-startup-id screenkey;
+
 # System monitor
 bindsym control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
-
-# settings
-bindsym control+mod1+m exec --no-startup-id xfce4-settings-manager
-
-# catfish
-bindsym control+mod1+c exec --no-startup-id catfish;focus
 
 # archlinux-logout
 bindsym control+mod1+k exec --no-startup-id archlinux-logout
@@ -350,25 +297,13 @@ bindsym control+mod1+l exec --no-startup-id archlinux-logout
 # rofi theme selector
 bindsym control+mod1+r exec --no-startup-id rofi-theme-selector
 
-# arcolinux conflict
-# bindsym $mod+m exec --no-startup-id pragha;focus
-
-# htop
-# arcolinux conflict
-# bindsym $mod+h exec --no-startup-id htop;focus
-
-# pavucontrol
-bindsym control+mod1+u exec --no-startup-id pavucontrol
-
-# pamac-manager
-bindsym control+mod1+p exec --no-startup-id pamac-manager
-
 # xkill
 bindsym --release $mod+Escape exec xkill
 
 # Function Keybinds
 # Browser
-bindsym $mod+w exec --no-startup-id brave-beta;focus
+bindsym $mod+f exec --no-startup-id brave-beta;focus
+bindsym $mod+mod1+f exec --no-startup-id firefox;focus
 
 # discord
 bindsym $mod+d exec --no-startup-id discord;focus
@@ -378,9 +313,6 @@ bindsym $mod+c exec --no-startup-id code;focus
 
 # virtual machine
 bindsym $mod+mod1+v exec --no-startup-id virtualbox;focus
-
-# music
-bindsym control+mod1+s exec --no-startup-id spotify;focus
 
 ################# screenshots                      
 
@@ -488,13 +420,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 2%-
 ################# bar toggle                       
 
 # bar toggle, hide or show
-bindsym $mod+b bar mode toggle
+bindsym mod1+b bar mode toggle
 
 ################# border control                   
 
 # Border control
 hide_edge_borders both
-bindsym $mod+shift+b exec --no-startup-id i3-msg border toggle
+bindsym mod1+shift+b exec --no-startup-id i3-msg border toggle
 
 # changing border style
 # super+t in arcolinux is starting terminal
@@ -572,12 +504,12 @@ mode "$mode_gaps_outer" {
 # if you want transparency on non-focused windows, ...
 exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
 
-bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
+bindsym control+mod1+o exec --no-startup-id ~/.config/i3/tooglePicom/picom-toggle.sh
 
 ################# bar appearance                   
 
 bar {
-    height 18
+    height 20
     mode dock
     # mode hide
     workspace_buttons yes
@@ -586,9 +518,7 @@ bar {
     position top
 
 	# system icons
-    # tray_output none
-    tray_output $firstMonitor
-    tray_output $secondMonitor
+    tray_output primary
 
     # OPTION 1 : i3status
 
@@ -634,6 +564,3 @@ bar {
     client.background       #a9a9a9
 
     ##STOP THEMING WM
-
-# powermode 
-exec --no-startup-id powermode-indicator
