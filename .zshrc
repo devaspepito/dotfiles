@@ -122,14 +122,6 @@ alias alaup='rm -rf ~/.config/alacritty/alacritty.toml && rm -rf ~/.config/alacr
 alias sdcu='sudo docker-compose up -d'
 alias sdcd='sudo docker-compose down'
 
-#  ▄ .▄      • ▌ ▄ ·. ▄▄▄ .▄▄▄▄· ▄▄▄  ▄▄▄ .▄▄▌ ▐ ▄▌
-# ██▪▐█▪     ·██ ▐███▪▀▄.▀·▐█ ▀█▪▀▄ █·▀▄.▀·██· █▌▐█
-# ██▀▐█ ▄█▀▄ ▐█ ▌▐▌▐█·▐▀▀▪▄▐█▀▀█▄▐▀▀▄ ▐▀▀▪▄██▪▐█▐▐▌
-# ██▌▐▀▐█▌.▐▌██ ██▌▐█▌▐█▄▄▌██▄▪▐█▐█•█▌▐█▄▄▌▐█▌██▐█▌
-# ▀▀▀ · ▀█▄▀▪▀▀  █▪▀▀▀ ▀▀▀ ·▀▀▀▀ .▀  ▀ ▀▀▀  ▀▀▀▀ ▀▪
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 #·▄▄▄▄•      ▐▄• ▄ ▪  ·▄▄▄▄  ▄▄▄ .
 #▪▀·.█▌▪      █▌█▌▪██ ██▪ ██ ▀▄.▀·
 #▄█▀▀▀• ▄█▀▄  ·██· ▐█·▐█· ▐█▌▐▀▀▪▄
@@ -138,13 +130,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 eval "$(zoxide init zsh)"
 
-# cowsay with fortune
+# neofetch
 
-# fortune | cowsay
-
-# fastfetch
-
-fastfetch
+neofetch
 
 # ███████╗███╗   ██╗██████╗      ██████╗ ███████╗    ██████╗  ██████╗ ████████╗███████╗
 # ██╔════╝████╗  ██║██╔══██╗    ██╔═══██╗██╔════╝    ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
