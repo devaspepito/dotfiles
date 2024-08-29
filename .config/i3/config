@@ -268,13 +268,13 @@ exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 exec --no-startup-id dunst &
 
 # network
-exec --no-startup-id nm-applet &
+# exec --no-startup-id nm-applet &
 
 # volume
 exec --no-startup-id volumeicon &
 
 # feh sets wallpaper
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/archWallpapers/archGrey.png &
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/wallpapers/wall-selection/nature.jpg &
 
 ################# applications keyboard shortcuts  
 
@@ -290,10 +290,6 @@ bindsym $mod+Shift+s exec --no-startup-id screenkey;
 # System monitor
 bindsym control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
 
-# archlinux-logout
-bindsym control+mod1+k exec --no-startup-id archlinux-logout
-bindsym control+mod1+l exec --no-startup-id archlinux-logout
-
 # rofi theme selector
 bindsym control+mod1+r exec --no-startup-id rofi-theme-selector
 
@@ -302,14 +298,13 @@ bindsym --release $mod+Escape exec xkill
 
 # Function Keybinds
 # Browser
-bindsym $mod+f exec --no-startup-id brave-beta;focus
-bindsym $mod+mod1+f exec --no-startup-id firefox;focus
+bindsym $mod+f exec --no-startup-id zen-browser;focus
 
 # discord
 bindsym $mod+d exec --no-startup-id discord;focus
 
-# Text Editor
-bindsym $mod+c exec --no-startup-id code;focus
+# Vscode Insiders
+bindsym $mod+c exec --no-startup-id code-insiders;focus
 
 # virtual machine
 bindsym $mod+mod1+v exec --no-startup-id virtualbox;focus
@@ -408,14 +403,14 @@ bindsym mod1+Shift+u exec --no-startup-id wal -i $(cat $HOME/.config/variety/wal
 
 ################# audio settings                   
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master '2%+'"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master '2%-'"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master '1%+'"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master '1%-'"
 bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master toggle"
 
 ################# brightnessctl                       
 
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +2%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 2%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 ################# bar toggle                       
 
@@ -513,27 +508,14 @@ bar {
     mode dock
     # mode hide
     workspace_buttons yes
-	  font pango: IosevkaTerm Nerd Font 9
+	  font pango: IosevkaTerm Nerd Font 11
     # position bottom
     position top
 
 	# system icons
     tray_output primary
 
-    # OPTION 1 : i3status
-
-    # type status_command i3status without the config file and
-    # you will get the standard i3status bar
-    # Second one is the standard statusbar with my personal settings
-
-	# status_command i3status
     status_command i3status -c ~/.config/i3/i3status.conf
-
-    ##START THEMING BAR
-    # Theme name : ArcoLinux Default
-
-    # i3 bar colors
-    # variable border background Text
 
     colors {
         background #2c2e34
@@ -550,17 +532,13 @@ bar {
     }
     ##STOP THEMING BAR
 
-    ##START THEMING WM
-    # Theme name : ArcoLinux Default
-
-    # Window color settings
     # class                 border  backgr. text    indicator
-    client.focused          #ABD5C5 #ABD5C5 #e5e5e5 #ABD5C5
-    client.unfocused        #222222 #222222 #eeeeee #222222
-    client.focused_inactive #222222 #222222 #282828 #222222
-    client.placeholder      #222222 #222222 #eeeeee #222222
-    client.urgent           #ff6077 #ff6077 #f7f7f7 #ff6077
+    #client.focused          #ABD5C5 #ABD5C5 #e5e5e5 #ABD5C5
+    #client.unfocused        #222222 #222222 #eeeeee #222222
+    #client.focused_inactive #222222 #222222 #282828 #222222
+    #client.placeholder      #222222 #222222 #eeeeee #222222
+    #client.urgent           #ff6077 #ff6077 #f7f7f7 #ff6077
 
-    client.background       #a9a9a9
+    #client.background       #a9a9a9
 
     ##STOP THEMING WM
