@@ -47,9 +47,9 @@ setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 
 function dir_icon {
   if [[ "$PWD" == "$HOME" ]]; then
-    echo "%B%F{cyan}%f%b"
+    echo "%B%F{cyan}󱂵%f%b"
   else
-    echo "%B%F{cyan}%f%b"
+    echo "%B%F{cyan}󰉋%f%b"
   fi
 }
 
@@ -125,11 +125,11 @@ fi
 }
 
 
-# ▄▄▄      • ▌ ▄ ·.     ▄ •▄ 
-# ▀▄ █·    ·██ ▐███▪    █▌▄▌▪
-# ▐▀▀▄     ▐█ ▌▐▌▐█·    ▐▀▀▄·
-# ▐█•█▌    ██ ██▌▐█▌    ▐█.█▌
-# .▀  ▀    ▀▀  █▪▀▀▀    ·▀  ▀
+# ▄▄▄     • ▌ ▄ ·.    ▄ •▄ 
+# ▀▄ █·   ·██ ▐███▪   █▌▄▌▪
+# ▐▀▀▄    ▐█ ▌▐▌▐█·   ▐▀▀▄·
+# ▐█•█▌   ██ ██▌▐█▌   ▐█.█▌
+# .▀  ▀   ▀▀  █▪▀▀▀   ·▀  ▀
 
 function rmk(){
 	scrub -p dod $1
@@ -141,11 +141,6 @@ function rmk(){
 # ▄█▀▀█ ██▪  ▐█·▄█▀▀█ ▄▀▀▀█▄▐▀▀▪▄▄▀▀▀█▄
 # ▐█ ▪▐▌▐█▌▐▌▐█▌▐█ ▪▐▌▐█▄▪▐█▐█▄▄▌▐█▄▪▐█
 #  ▀  ▀ .▀▀▀ ▀▀▀ ▀  ▀  ▀▀▀▀  ▀▀▀  ▀▀▀▀ 
-
-alias v=nvim
-alias n=nvim
-
-alias tb=taskbook
 alias lt=utd
 
 alias cat=bat
@@ -185,6 +180,11 @@ alias mioff='amixer sset Capture nocap'
 
 alias sdcu='sudo docker-compose up -d'
 alias sdcd='sudo docker-compose down'
+alias sstd='sudo systemctl start docker.socket && sudo systemctl start docker.service'
+alias sspd='sudo systemctl stop docker.socket && sudo systemctl stop docker.service'
+
+alias sstms='sudo systemctl start mssql-server'
+alias sspms='sudo systemctl stop mssql-server'
 
 alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias mainten="yay -Sc --noconfirm && sudo pacman -Scc --noconfirm"
@@ -199,6 +199,9 @@ alias update="yay -Syu --noconfirm"
 
 eval "$(zoxide init zsh)"
 
+# fastfetch
+fastfetch
+
 # ███████╗███╗   ██╗██████╗      ██████╗ ███████╗    ██████╗  ██████╗ ████████╗███████╗
 # ██╔════╝████╗  ██║██╔══██╗    ██╔═══██╗██╔════╝    ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
 # █████╗  ██╔██╗ ██║██║  ██║    ██║   ██║█████╗      ██║  ██║██║   ██║   ██║   ███████╗
@@ -206,3 +209,5 @@ eval "$(zoxide init zsh)"
 # ███████╗██║ ╚████║██████╔╝    ╚██████╔╝██║         ██████╔╝╚██████╔╝   ██║   ███████║
 # ╚══════╝╚═╝  ╚═══╝╚═════╝      ╚═════╝ ╚═╝         ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
