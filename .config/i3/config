@@ -97,6 +97,9 @@ bindsym $mod+o exec --no-startup-id rofi -show drun
 bindsym $mod+Shift+o exec --no-startup-id rofi -show run
 bindsym $mod+ctrl+o exec --no-startup-id rofi -show window
 
+# emoji menu
+bindsym mod4+e exec --no-startup-id rofi -show emoji -modi emoji
+
 # wifi menu
 bindsym $mod+w exec $HOME/.local/bin/wifimenu
 
@@ -267,7 +270,7 @@ exec --no-startup-id nm-applet &
 exec --no-startup-id volumeicon &
 
 # feh sets wallpaper
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/archWallpapers/1228043.webp
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/archWallpapers/unix.jpg &
 
 
 ################# application keyboard shortcuts  
@@ -300,7 +303,7 @@ bindsym control+mod1+r exec --no-startup-id rofi-theme-selector
 bindsym --release $mod+Escape exec xkill
 
 # Browser
-bindsym $mod+f exec --no-startup-id zen-browser;focus
+bindsym $mod+f exec --no-startup-id brave;focus
 # bindsym $mod+f exec --no-startup-id chromium;focus
 
 # thunar
@@ -331,9 +334,9 @@ for_window [class="Alacritty"] focus
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master '1%+'"
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master '1%-'"
 bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master toggle"
-bindsym $mod+control+u exec --no-startup-id "amixer -D pulse sset Master '1%+'"
-bindsym $mod+control+p exec --no-startup-id "amixer -D pulse sset Master '1%-'"
-bindsym $mod+control+m exec --no-startup-id "amixer -D pulse set Master toggle"
+bindsym $mod+Ctrl+u exec --no-startup-id "amixer -D pulse sset Master '1%+'"
+bindsym $mod+Ctrl+p exec --no-startup-id "amixer -D pulse sset Master '1%-'"
+bindsym $mod+Ctrl+m exec --no-startup-id "amixer -D pulse set Master toggle"
 
 # Brightness settings
 
