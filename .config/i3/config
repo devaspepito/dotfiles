@@ -26,9 +26,12 @@ set $mod Mod1
 set $up k
 set $down j
 set $left h
-set $right e 
+set $right i
 
 ################# Single and Dual screen
+
+# current displays
+exec --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --left-of eDP1 || xrandr --output HDMI1 --off
 
 # current displays
 exec --no-startup-id xrandr --output DP0 --right-of HDMI-0 --auto
@@ -46,6 +49,7 @@ workspace 2 output $firstMonitor
 workspace 3 output $firstMonitor
 workspace 4 output $firstMonitor
 workspace 5 output $firstMonitor
+
 workspace 6 output $secondMonitor
 workspace 7 output $secondMonitor
 workspace 8 output $secondMonitor
@@ -88,9 +92,6 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # ArchLinux menus
-
-# dmenu
-bindsym $mod+mod4+o exec --no-startup-id dmenu_run -i -nb '#1a181a' -nf '#7accd7' -sb '#7accd7' -sf '#1a181a' -fn 'IosevkaTermNerdFont:bold:pixelsize=13'
 
 # rofi
 bindsym $mod+o exec --no-startup-id rofi -show drun
@@ -251,9 +252,6 @@ exec --no-startup-id polybar &
 # udiskie
 exec --no-startup-id 'udiskie -t' &
 
-# cbatticon
-exec --no-startup-id cbatticon &
-
 # powermode 
 exec --no-startup-id powermode-indicator &
 
@@ -266,11 +264,11 @@ exec --no-startup-id dunst &
 # network
 exec --no-startup-id nm-applet &
 
-# volume
-exec --no-startup-id volumeicon &
+# hsetroot set wallpaper
+exec --no-startup-id hsetroot -cover $HOME/Pictures/wallpapers/archWallpapers/1776186.jpg &
 
-# feh sets wallpaper
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/archWallpapers/unix.jpg &
+# unclutter
+exec --no-startup-id unclutter --timeout 5
 
 
 ################# application keyboard shortcuts  
@@ -285,19 +283,16 @@ bindsym $mod+Shift+Return exec --no-startup-id alacritty;
 bindsym $mod+Shift+s exec --no-startup-id screenkey;
 
 # redshift day
-bindsym $mod+Shift+d exec --no-startup-id redshift -P -O 6800;
+bindsym $mod+Shift+d exec --no-startup-id redshift -x;
 
 # redshift night
-bindsym $mod+Shift+n exec --no-startup-id redshift -P -O 3700;
+bindsym $mod+Shift+n exec --no-startup-id redshift -P -O 2300;
 
 # scrot
 bindsym $mod+Ctrl+s exec --no-startup-id scrot;
 
-# System monitor
-bindsym control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
-
 # rofi theme selector
-bindsym control+mod1+r exec --no-startup-id rofi-theme-selector
+bindsym control+mod4+r exec --no-startup-id rofi-theme-selector
 
 # xkill
 bindsym --release $mod+Escape exec xkill
@@ -320,6 +315,9 @@ bindsym $mod+Shift+z exec --no-startup-id zeditor;focus
 
 # virtual machine
 bindsym $mod+Shift+v exec --no-startup-id virtualbox;focus
+
+# reload polybar
+bindsym $mod+Ctrl+r exec --no-startup-id killall -q polybar;exec --no-startup-id polybar -r main &
 
 # Floating rules
 
@@ -371,11 +369,12 @@ popup_during_fullscreen smart
 
 # i3 gaps
 
-gaps inner 7
+gaps inner 8
 gaps outer 0
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 2
 new_window pixel 3
-smart_gaps on
+smart_gaps off
+default_border pixel 0
 # smart_borders on
 
 # i3 gaps change                   
@@ -431,8 +430,8 @@ bindsym control+mod4+o exec --no-startup-id ~/.config/i3/tooglePicom/picom-toggl
 #    # mode hide
 #    workspace_buttons yes
 #	  font pango: IosevkaTerm Nerd Font 12
-#    # position bottom
-#    position top
+#    position bottom
+#    #position top
 #
 #	# system icons
 #    tray_output primary
@@ -452,11 +451,11 @@ bindsym control+mod4+o exec --no-startup-id ~/.config/i3/tooglePicom/picom-toggl
 #        }
 #
 #    }
-#    ##STOP THEMING BAR
-#
-#    # class                 border  backgr. text    indicator
-#    client.focused          #444444 #61AFEF #444444 #e5c463
-#    client.unfocused        #222222 #222222 #eeeeee #222222
-#    #client.focused_inactive #222222 #222222 #282828 #222222
-#    #client.placeholder      #222222 #222222 #eeeeee #222222
-#    client.urgent           #E06C75 #E06C75 #f7f7f7 #E06C75
+    ##STOP THEMING BAR
+
+# class                 border  backgr. text    indicato
+client.focused          #444444 #61AFEF #444444 #e5c46
+client.unfocused        #222222 #222222 #eeeeee #22222
+#client.focused_inactive #222222 #222222 #282828 #222222
+#client.placeholder      #222222 #222222 #eeeeee #22222
+client.urgent           #E06C75 #E06C75 #f7f7f7 #E06C75
