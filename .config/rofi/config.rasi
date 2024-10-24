@@ -1,25 +1,29 @@
 configuration {
-  display-drun: "Applications:";
-  display-run: "Execute: ";
-  display-window: "Windows:";
+  show-icons:   true;
+  icon-theme:   "candy-icons";
+  display-drun: "app: ";
+  display-run: "run: ";
+  display-window: "window: ";
+  display-emoji: "emoji: ";
   drun-display-format: "{name}";
-  font: "IosevkaTerm Nerd Font Bold 12";
+  font: "FantasqueSansM Nerd Font 13";
   modi: "window,run,drun,emoji";
 }
 
 @theme "/dev/null"
 
 * {
-  bg: #11121D;
-  bg-alt: #444b6a;
+  bg: #161616;
+  bg-alt: #484a55;
 
-  fg: #FFFFFF;
-  fg-alt: #787c99;
+  fg: #d6d6d7;
+  fg-alt: #7b7c7e;
 
   background-color: @bg;
   
   border: 0;
-  margin: 0;
+  border-radius: 10;
+  margin: 2;
   padding: 0;
   spacing: 0;
 }
@@ -44,7 +48,7 @@ element-text {
 }
 
 element-icon {
-  size: 30;
+  size: 20;
 }
 
 entry {
@@ -75,5 +79,3 @@ prompt {
   padding: 12 0 0 12;
   text-color: @fg;
 }
-
-/* vim: ft=sass
