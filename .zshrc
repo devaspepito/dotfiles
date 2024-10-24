@@ -158,14 +158,16 @@ alias gc-m='git commit -m'
 alias gp='git push'
 alias gpl='git pull'
 alias gst='git status'
+alias gbm='git branch -M main'
+alias gb='git branch -M'
 
-alias ls=lsd
-alias l=ls
-alias la='ls -a'
-alias ll='l -l'
-alias lla='ll -a'
+alias ls='lsd -a'
+alias l='ls -a'
+alias ll='l -la'
 alias ..='cd ..'
 alias ...=cd
+alias n=nvim
+alias vim=nvim
 
 alias q=exit
 alias r=ranger
@@ -174,7 +176,7 @@ alias fast=fastfetch
 alias clfs='clear && fastfetch'
 alias fixhour='sudo ntpd -qg && sudo hwclock -w'
 alias udb='sudo updatedb'
-alias sozsh='source .zshrc'
+alias sozsh='source ~/.zshrc'
 alias mion='amixer sset Capture cap'
 alias mioff='amixer sset Capture nocap'
 
@@ -199,8 +201,13 @@ alias update="yay -Syu --noconfirm"
 
 eval "$(zoxide init zsh)"
 
+# ·▄▄▄ ▄▄▄· .▄▄ · ▄▄▄▄▄·▄▄▄▄▄▄ .▄▄▄▄▄ ▄▄·  ▄ .▄
+# ▐▄▄·▐█ ▀█ ▐█ ▀. •██  ▐▄▄·▀▄.▀·•██  ▐█ ▌▪██▪▐█
+# ██▪ ▄█▀▀█ ▄▀▀▀█▄ ▐█.▪██▪ ▐▀▀▪▄ ▐█.▪██ ▄▄██▀▐█
+# ██▌.▐█ ▪▐▌▐█▄▪▐█ ▐█▌·██▌.▐█▄▄▌ ▐█▌·▐███▌██▌▐▀
+# ▀▀▀  ▀  ▀  ▀▀▀▀  ▀▀▀ ▀▀▀  ▀▀▀  ▀▀▀ ·▀▀▀ ▀▀▀ ·
+
 # fastfetch
-fastfetch
 
 # ███████╗███╗   ██╗██████╗      ██████╗ ███████╗    ██████╗  ██████╗ ████████╗███████╗
 # ██╔════╝████╗  ██║██╔══██╗    ██╔═══██╗██╔════╝    ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
