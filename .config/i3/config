@@ -1,55 +1,129 @@
-################# Start of all the settings
 
-# KEY DEFINITIONS TO REMEMBER
-# $mod = Set below
-# Mod4 = Super key
-# Mod1 = ALT key
-# Control = CTRL key
-# Shift = SHIFT key
-# Escape = ESCAPE key
-# Return = ENTER or RETURN key
-# KP_Enter = Keypad Enter
-# Pause = PAUSE key
-# Print = PRINT key
-# Tab = TAB key
+# ██ ██████  ██████   ██████  ████████ ███████ 
+# ██      ██ ██   ██ ██    ██    ██    ██      
+# ██  █████  ██   ██ ██    ██    ██    ███████ 
+# ██      ██ ██   ██ ██    ██    ██         ██ 
+# ██ ██████  ██████   ██████     ██    ███████ 
+#
+#          developed by devaspepito
 
-################# Define the $mod variable/key
-
-# Key to rule them all : Super(Windows) or Alt key - see definition above
-# set Super key
 set $mod Mod1
 
-################# Define the movements keys - variables
-
-# This is setup for qwerty
-# set $right to m if using azerty keyboard
 set $up k
 set $down j
 set $left h
 set $right i
 
-################# Single and Dual screen
-
-# current displays
-exec --no-startup-id xrandr --output HDMI1 --mode 1920x1080 --left-of eDP1 || xrandr --output HDMI1 --off
-
-# current displays
-exec --no-startup-id xrandr --output DP0 --right-of HDMI-0 --auto
-
-# mouse focus
-focus_follows_mouse yes
-
-# current setup
-
 set $firstMonitor HDMI-1
 set $secondMonitor HDMI-2
+
+font pango: IosevkaTerm Nerd Font 10
+
+exec_always --no-startup-id bash ~/.config/polybar/start.sh
+exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf
+exec --no-startup-id 'udiskie -t' &
+exec --no-startup-id powermode-indicator &
+exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+exec --no-startup-id dunst &
+exec --no-startup-id nm-applet &
+exec --no-startup-id hsetroot -cover $HOME/Pictures/wallpapers/wallpapers/misc/robinwall02-notext.png
+exec --no-startup-id unclutter --timeout 5
+exec --no-startup-id xrandr --output HDMI-A-0 --left-of eDP --auto --rotate left
+
+focus_follows_mouse no
+
+bindsym $mod+o exec --no-startup-id rofi -show drun
+bindsym $mod+Shift+o exec --no-startup-id rofi -show run
+bindsym $mod+ctrl+o exec --no-startup-id rofi -show window
+bindsym Mod4+Control+r exec --no-startup-id rofi-theme-selector
+bindsym Mod4+e exec --no-startup-id rofi -show emoji -modi emoji
+bindsym $mod+w exec $HOME/.local/bin/wifimenu
+bindsym $mod+x exec $HOME/.local/bin/powermenu
+
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+q exit
+bindsym $mod+Shift+l exec betterlockscreen -l dim
+bindsym $mod+q kill
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+l split h
+bindsym $mod+v split v
+
+bindsym $mod+Shift+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+semicolon layout toggle split
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+Return exec --no-startup-id kitty;
+bindsym $mod+Shift+Return exec --no-startup-id alacritty;
+
+bindsym $mod+Shift+s exec --no-startup-id screenkey;
+bindsym $mod+Mod4+s exec --no-startup-id pkill screenkey;
+
+bindsym $mod+Shift+d exec --no-startup-id redshift -x;
+bindsym $mod+Shift+n exec --no-startup-id redshift -P -O 2600;
+
+bindsym $mod+Ctrl+s exec --no-startup-id scrot;
+
+bindsym $mod+f exec --no-startup-id qutebrowser;focus
+
+bindsym $mod+Control+f exec --no-startup-id thunar;focus
+
+bindsym $mod+d exec --no-startup-id discord;focus
+
+bindsym $mod+c exec --no-startup-id code;focus
+
+bindsym $mod+control+l exec --no-startup-id zathura;focus
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id sh ~/.config/i3/scripts/Volume --inc
+bindsym XF86AudioLowerVolume exec --no-startup-id sh ~/.config/i3/scripts/Volume --dec
+bindsym XF86AudioMute exec --no-startup-id sh ~/.config/i3/scripts/Volume --toggle
+bindsym $mod+Ctrl+u exec --no-startup-id sh ~/.config/i3/scripts/Volume --inc
+bindsym $mod+Ctrl+p exec --no-startup-id sh ~/.config/i3/scripts/Volume --dec
+bindsym $mod+Ctrl+m exec --no-startup-id sh ~/.config/i3/scripts/Volume --toggle
+
+bindsym XF86MonBrightnessUp exec --no-startup-id sh ~/.config/i3/scripts/Brightness up
+bindsym XF86MonBrightnessDown exec --no-startup-id sh ~/.config/i3/scripts/Brightness down
+bindsym $mod+Shift+u exec --no-startup-id sh ~/.config/i3/scripts/Brightness up
+bindsym $mod+Shift+p exec --no-startup-id sh ~/.config/i3/scripts/Brightness down
+
+floating_modifier $mod
+
+gaps inner 5
+gaps outer 5
+smart_gaps off
+for_window [class=".*"] border normal
+default_border pixel 0
 
 workspace 1 output $firstMonitor
 workspace 2 output $firstMonitor
 workspace 3 output $firstMonitor
 workspace 4 output $firstMonitor
 workspace 5 output $firstMonitor
-
 workspace 6 output $secondMonitor
 workspace 7 output $secondMonitor
 workspace 8 output $secondMonitor
@@ -67,162 +141,28 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# ArchLinux menus
-
-# rofi
-bindsym $mod+o exec --no-startup-id rofi -show drun
-bindsym $mod+Shift+o exec --no-startup-id rofi -show run
-bindsym $mod+ctrl+o exec --no-startup-id rofi -show window
-
-# emoji menu
-bindsym mod4+e exec --no-startup-id rofi -show emoji -modi emoji
-
-# wifi menu
-bindsym $mod+w exec $HOME/.local/bin/wifimenu
-
-# Lock-Logout-Suspenr-Hibernate-Reboot-Shutdown
-
-# alt+x
-bindsym $mod+x exec $HOME/.local/bin/powermenu
-
-#bindsym mod1+x mode "$mode_system"
-#
-#set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
-#mode "$mode_system" {
-#    bindsym k exec --no-startup-id ~/.config/i3/exit/i3exit.sh lock, mode "default"
-#    bindsym l exec --no-startup-id ~/.config/i3/exit/i3exit.sh logout, mode "default"
-#    bindsym u exec --no-startup-id ~/.config/i3/exit/i3exit.sh suspend, mode "default"
-#    bindsym h exec --no-startup-id ~/.config/i3/exit/i3exit.sh hibernate, mode "default"
-#    bindsym r exec --no-startup-id ~/.config/i3/exit/i3exit.sh reboot, mode "default"
-#    bindsym s exec --no-startup-id ~/.config/i3/exit/i3exit.sh shutdown, mode "default"
-#
-#    # back to normal: Enter or Escape
-#    bindsym Return mode "default"
-#}
-
-# Reload - Restart - Quit i3
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# quit i3
-bindsym $mod+Shift+q exit
-# lock i3
-bindsym $mod+shift+l exec betterlockscreen -l dim
-
-# quit an aplication
-
-# kill focused window
-bindsym $mod+q kill
-
-################# Moving around in i3              
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-################# moving around workspaces         
-
-# navigate workspaces next / previous
-bindsym mod1+Ctrl+Right workspace next
-bindsym mod1+Ctrl+Left workspace prev
-
-# switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
-
-################# Tiling parameters                
-
-# orientation for new workspaces
-default_orientation horizontal
-
-# split in horizontal orientation
-bindsym $mod+l split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+Shift+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-# qwerty/azerty issue for letter z
-bindsym $mod+s layout stacking
-bindsym $mod+z layout tabbed
-bindsym $mod+semicolon layout toggle split
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-# bindsym $mod+d focus child
-
-################# resize  
-
-
-# Resizing by 1
-bindsym $mod+Ctrl+e resize shrink width 7 px 
-bindsym $mod+Ctrl+k resize grow height 7 px 
-bindsym $mod+Ctrl+j resize shrink height 7 px 
-bindsym $mod+Ctrl+h resize grow width 7 px 
-
-# old resize keybindings
-# resize window (you can also use the mouse for that)
-
-bindsym $mod+r mode "resize"
 
 mode "resize" {
     bindsym $left       resize shrink width 10 px or 2 ppt
@@ -235,227 +175,29 @@ mode "resize" {
     bindsym Up          resize shrink height 10 px or 2 ppt
     bindsym Right       resize grow width 10 px or 2 ppt
 
-# back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-# Font
+mode "gaps" {
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
 
-font pango: IosevkaTerm Nerd Font 10
+    bindsym Ctrl+plus  gaps outer all plus 5
+    bindsym Ctrl+minus  gaps outer all minus 5
 
-# Autostart Applications
-
-# polybar
-exec --no-startup-id polybar &
-
-# udiskie
-exec --no-startup-id 'udiskie -t' &
-
-# powermode 
-exec --no-startup-id powermode-indicator &
-
-# Authentication dialog
-exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
-
-# dunst
-exec --no-startup-id dunst &
-
-# network
-exec --no-startup-id nm-applet &
-
-# hsetroot set wallpaper
-exec --no-startup-id hsetroot -cover $HOME/Pictures/wallpapers/archWallpapers/1776186.jpg &
-
-# unclutter
-exec --no-startup-id unclutter --timeout 5
-
-
-################# application keyboard shortcuts  
-
-# not workspace related
-
-# terminal
-bindsym $mod+Return exec --no-startup-id kitty;
-bindsym $mod+Shift+Return exec --no-startup-id alacritty;
-
-# screenkey
-bindsym $mod+Shift+s exec --no-startup-id screenkey;
-
-# redshift day
-bindsym $mod+Shift+d exec --no-startup-id redshift -x;
-
-# redshift night
-bindsym $mod+Shift+n exec --no-startup-id redshift -P -O 2300;
-
-# scrot
-bindsym $mod+Ctrl+s exec --no-startup-id scrot;
-
-# rofi theme selector
-bindsym control+mod4+r exec --no-startup-id rofi-theme-selector
-
-# xkill
-bindsym --release $mod+Escape exec xkill
-
-# Browser
-bindsym $mod+f exec --no-startup-id brave;focus
-# bindsym $mod+f exec --no-startup-id chromium;focus
-
-# thunar
-bindsym $mod+Control+f exec --no-startup-id thunar;focus
-
-# discord
-bindsym $mod+d exec --no-startup-id discord;focus
-
-# Vscode
-bindsym $mod+c exec --no-startup-id code;focus
-
-# Zed
-bindsym $mod+Shift+z exec --no-startup-id zeditor;focus
-
-# virtual machine
-bindsym $mod+Shift+v exec --no-startup-id virtualbox;focus
-
-# reload polybar
-bindsym $mod+Ctrl+r exec --no-startup-id killall -q polybar;exec --no-startup-id polybar -r main &
-
-# Floating rules
-
-for_window [class="Xfce4-taskmanager"] floating enable
-
-# Focus rules
-
-for_window [class="Alacritty"] focus
-
-# Audio settings
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master '1%+'"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master '1%-'"
-bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master toggle"
-bindsym $mod+Ctrl+u exec --no-startup-id "amixer -D pulse sset Master '1%+'"
-bindsym $mod+Ctrl+p exec --no-startup-id "amixer -D pulse sset Master '1%-'"
-bindsym $mod+Ctrl+m exec --no-startup-id "amixer -D pulse set Master toggle"
-
-# Brightness settings
-
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
-bindsym $mod+Shift+u exec --no-startup-id brightnessctl set +5%
-bindsym $mod+Shift+p exec --no-startup-id brightnessctl set 5%-
-
-# Barr toggle
-
-bindsym mod1+b bar mode toggle
-
-# Border control
-#
-hide_edge_borders both
-bindsym mod1+shift+b exec --no-startup-id i3-msg border toggle
-
-bindsym $mod+t border normal
-bindsym $mod+y border pixel 1
-bindsym $mod+u border none
-
-# new_window pixel 1
-new_window normal
-# new_window none
-
-# new_float pixel 1
-new_float normal
-# new_float none
-
-# Popups during fullscreen mode
-popup_during_fullscreen smart
-
-# i3 gaps
-
-gaps inner 8
-gaps outer 0
-for_window [class="^.*"] border pixel 2
-new_window pixel 3
-smart_gaps off
-default_border pixel 0
-# smart_borders on
-
-# i3 gaps change                   
-
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-# picom of i3wm                  
-
-exec_always --no-startup-id picom --config ~/.config/i3/picom.conf
-
-bindsym control+mod4+o exec --no-startup-id ~/.config/i3/tooglePicom/picom-toggle.sh
-
-# bar appearance                   
-
-#bar {
-#    height 20
-#    mode dock
-#    # mode hide
-#    workspace_buttons yes
-#	  font pango: IosevkaTerm Nerd Font 12
-#    position bottom
-#    #position top
-#
-#	# system icons
-#    tray_output primary
-#
-#    status_command i3status -c ~/.config/i3/i3status.conf
-#
-#    colors {
-#        background #3F4451
-#        statusline #e2e2e3
-#        separator  #7f8490
-#
-#        # colorclass           border  backgr. text
-#        focused_workspace     #3F4451 #61AFEF #181818
-#        active_workspace      #3F4451 #61AFEF #181818
-#        inactive_workspace    #3F4451 #222222 #a9a9a9
-#        urgent_workspace      #3F4451 #E06C75 #e1e3e4
-#        }
-#
-#    }
-    ##STOP THEMING BAR
+bindsym $mod+r mode "resize"
+bindsym $mod+g mode "gaps"
 
 # class                 border  backgr. text    indicato
-client.focused          #444444 #61AFEF #444444 #e5c46
+client.focused          #000000 #8DA3B9 #000000 #BDCBD9
 client.unfocused        #222222 #222222 #eeeeee #22222
-#client.focused_inactive #222222 #222222 #282828 #222222
-#client.placeholder      #222222 #222222 #eeeeee #22222
+client.focused_inactive #222222 #222222 #282828 #222222
+client.placeholder      #222222 #222222 #eeeeee #22222
 client.urgent           #E06C75 #E06C75 #f7f7f7 #E06C75
+
+client.background       #252525
