@@ -5,10 +5,6 @@
 export SUDO_PROMPT="If you want continue 
 type your password %u: "
 
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
-fi
-
 # load engine
 
 autoload -Uz compinit
@@ -47,14 +43,14 @@ setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 
 function dir_icon {
   if [[ "$PWD" == "$HOME" ]]; then
-    echo "%B%F{cyan}󱂵%f%b"
+    echo "%B%F{cyan}%f%b"
   else
     echo "%B%F{cyan}󰉋%f%b"
   fi
 }
 
-PS1='%B%F{blue}%f%b  %B%F{magenta}%B%n $(dir_icon)  %B%F{red}%~%f%b${vcs_info_msg_0_} 
-%(?.%B%F{green} .%F{red}  )%f%b '
+PS1='%B%F{blue} 󱍢 %f%b %B%F{magenta}%B%n $(dir_icon)  %B%F{red}%~%f%b${vcs_info_msg_0_} 
+%(?.%B%F{green}󰞔 .%F{red}󰁄 )%f%b '
 
 # command not found
 command_not_found_handler() {
@@ -82,6 +78,9 @@ export LANG=en_US.UTF-8
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
+
+# bin path
+export PATH=$PATH:/home/pepito/.local/bin
 
 # History
 HISTSIZE=100000
@@ -145,6 +144,8 @@ alias lt=utd
 
 alias cat=bat
 
+alias clock="tty-clock -c -C 4 -f '%d/%m/%Y'"
+
 alias cls=clear
 alias cl=clear
 alias lc=clear
@@ -159,15 +160,20 @@ alias gp='git push'
 alias gpl='git pull'
 alias gst='git status'
 alias gbm='git branch -M main'
-alias gb='git branch -M'
+alias gb='git branch'
+alias grao='git remote add origin'
+alias gch='git checkout'
+alias gi='git init'
 
-alias ls='lsd -a'
-alias l='ls -a'
-alias ll='l -la'
+alias ls='eza -a --icons'
+alias l='eza -a --icons'
+alias ll='eza -l --icons -a'
+alias ltree='eza --tree --level=2 --icons'
 alias ..='cd ..'
 alias ...=cd
 alias n=nvim
-alias vim=nvim
+alias neo=nvim
+# alias vim=nvim
 
 alias q=exit
 alias r=ranger
@@ -180,17 +186,33 @@ alias sozsh='source ~/.zshrc'
 alias mion='amixer sset Capture cap'
 alias mioff='amixer sset Capture nocap'
 
-alias sdcu='sudo docker-compose up -d'
-alias sdcd='sudo docker-compose down'
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
 alias sstd='sudo systemctl start docker.socket && sudo systemctl start docker.service'
 alias sspd='sudo systemctl stop docker.socket && sudo systemctl stop docker.service'
 
 alias sstms='sudo systemctl start mssql-server'
 alias sspms='sudo systemctl stop mssql-server'
 
+alias ssttor='sudo systemctl start tor'
+alias ssptor='sudo systemctl stop tor'
+
 alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-alias mainten="yay -Sc --noconfirm && sudo pacman -Scc --noconfirm"
-alias update="yay -Syu --noconfirm"
+alias mainten="paru -Sc --noconfirm && sudo pacman -Scc --noconfirm"
+alias update="paru -Syu --noconfirm && sudo pacman -Syu --noconfirm"
+alias mirrors="sudo reflector --verbose --latest 10 --country 'Colombia' --age 6 --sort rate --save /etc/pacman.d/mirrorlist"
+
+alias sysfetch="clear && bash /home/pepito/.local/bin/sysfetch"
+
+alias swof="sudo swapoff -a"
+alias swon="sudo swapon -a"
+
+alias yt="mov-cli -s youtube"
+alias ani="mov-cli -s anime"
+
+# Gentleman Alias
+alias fzfbat='fzf --preview="bat --theme=paradise --color=always {}"'
+alias fzfnvim='nvim $(fzf --preview="bat --theme=paradise --color=always {}")'
 
 
 #·▄▄▄▄•      ▐▄• ▄ ▪  ·▄▄▄▄  ▄▄▄ .
@@ -209,6 +231,21 @@ eval "$(zoxide init zsh)"
 
 # fastfetch
 
+# fzf
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
+
+# laravel
+export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+
+# spicetify
+export PATH=$PATH:/home/pepito/.spicetify
+
+# nvm directory
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # ███████╗███╗   ██╗██████╗      ██████╗ ███████╗    ██████╗  ██████╗ ████████╗███████╗
 # ██╔════╝████╗  ██║██╔══██╗    ██╔═══██╗██╔════╝    ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
 # █████╗  ██╔██╗ ██║██║  ██║    ██║   ██║█████╗      ██║  ██║██║   ██║   ██║   ███████╗
@@ -217,4 +254,10 @@ eval "$(zoxide init zsh)"
 # ╚══════╝╚═╝  ╚═══╝╚═════╝      ╚═════╝ ╚═╝         ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# pnpm
+export PNPM_HOME="/home/pepito/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
