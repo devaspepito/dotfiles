@@ -1,23 +1,30 @@
 configuration {
   show-icons:   true;
-  icon-theme:   "candy-icons";
+  icon-theme:   "oomox-Tokyonight-Light";
   display-drun: "app: ";
   display-run: "run: ";
   display-window: "window: ";
   display-emoji: "emoji: ";
   drun-display-format: "{name}";
-  font: "FantasqueSansM Nerd Font 13";
+  font: "IosevkaTerm Nerd Font 13";
   modi: "window,run,drun,emoji";
 }
 
 @theme "/dev/null"
 
 * {
-  bg: #161616;
-  bg-alt: #484a55;
+    bg: #24283b;
+    hv: #9274ca; 
+    primary: #C5C8C6; 
+    ug: #0B2447;
+    font: "IosevkaTerm Nerd Font 13";
+    background-color: @bg;
+    border: 0px;
+    kl: #7aa2f7;
+    black: #000000;
 
-  fg: #d6d6d7;
-  fg-alt: #7b7c7e;
+    transparent: rgba(46,52,64,0);
+
 
   background-color: @bg;
   
@@ -28,17 +35,18 @@ configuration {
   spacing: 0;
 }
 
+
 window {
   width: 30%;
 }
 
 element {
   padding: 8 0;
-  text-color: @fg-alt;
+  text-color: @kl;
 }
 
 element selected {
-  text-color: @fg;
+  text-color: @primary;
 }
 
 element-text {
@@ -48,13 +56,13 @@ element-text {
 }
 
 element-icon {
-  size: 20;
+  size: 25;
 }
 
 entry {
-  background-color: @bg-alt;
+  background-color: @bg;
   padding: 12;
-  text-color: @fg;
+  text-color: @kl;
 }
 
 inputbar {
@@ -74,8 +82,8 @@ mainbox {
 }
 
 prompt {
-  background-color: @bg-alt;
+  background-color: @bg;
   enabled: true;
   padding: 12 0 0 12;
-  text-color: @fg;
+  text-color: @kl;
 }
