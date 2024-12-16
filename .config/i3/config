@@ -7,7 +7,7 @@
 #
 #          developed by devaspepito
 
-set $mod Mod1
+set $mod Mod4
 
 set $up k
 set $down j
@@ -19,24 +19,26 @@ set $secondMonitor HDMI-2
 
 font pango: IosevkaTerm Nerd Font 10
 
-exec_always --no-startup-id bash ~/.config/polybar/start.sh
-exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf
+exec_always --no-startup-id bash ~/.config/polybar/start.sh &
+exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf &
 exec --no-startup-id 'udiskie -t' &
 exec --no-startup-id powermode-indicator &
 exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 exec --no-startup-id dunst &
 exec --no-startup-id nm-applet &
-exec --no-startup-id hsetroot -cover $HOME/Pictures/wallpapers/wallpapers/misc/robinwall02-notext.png
-exec --no-startup-id unclutter --timeout 5
-exec --no-startup-id xrandr --output HDMI-A-0 --left-of eDP --auto --rotate left
+# exec --no-startup-id hsetroot -cover $HOME/Pictures/Wallpapers/japan-house-anime.jpg &
+exec --no-startup-id hsetroot -cover $HOME/Pictures/wallpapers/wallpapers/misc/n4.png &
+exec --no-startup-id unclutter --timeout 5 &
+exec --no-startup-id xrandr --output HDMI-A-0 --left-of eDP --auto --rotate left &
+exec --no-startup-id xscreensaver &
 
 focus_follows_mouse no
 
 bindsym $mod+o exec --no-startup-id rofi -show drun
 bindsym $mod+Shift+o exec --no-startup-id rofi -show run
 bindsym $mod+ctrl+o exec --no-startup-id rofi -show window
-bindsym Mod4+Control+r exec --no-startup-id rofi-theme-selector
-bindsym Mod4+e exec --no-startup-id rofi -show emoji -modi emoji
+bindsym Mod1+Control+r exec --no-startup-id rofi-theme-selector
+bindsym Mod1+e exec --no-startup-id rofi -show emoji -modi emoji
 bindsym $mod+w exec $HOME/.local/bin/wifimenu
 bindsym $mod+x exec $HOME/.local/bin/powermenu
 
@@ -82,7 +84,7 @@ bindsym $mod+Return exec --no-startup-id kitty;
 bindsym $mod+Shift+Return exec --no-startup-id alacritty;
 
 bindsym $mod+Shift+s exec --no-startup-id screenkey;
-bindsym $mod+Mod4+s exec --no-startup-id pkill screenkey;
+bindsym $mod+Mod1+s exec --no-startup-id pkill screenkey;
 
 bindsym $mod+Shift+d exec --no-startup-id redshift -x;
 bindsym $mod+Shift+n exec --no-startup-id redshift -P -O 2600;
