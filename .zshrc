@@ -29,7 +29,7 @@ zstyle ':completion:*' matcher-list \
 		'+l:|=*'
 zstyle ':completion:*:warnings' format "%B%F{red}No matches for:%f %F{magenta}%d%b"
 zstyle ':completion:*:descriptions' format '%F{yellow}[-- %d --]%f'
-zstyle ':vcs_info:*' formats ' %B%F{yellow}%b%f'
+zstyle ':vcs_info:*' formats ' %B%F{blue} %b%f'
 
 # zsh options
 setopt AUTOCD              # change directory just by typing its name
@@ -43,14 +43,14 @@ setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 
 function dir_icon {
   if [[ "$PWD" == "$HOME" ]]; then
-    echo "%B%F{cyan}%f%b"
+    echo "%B%F{cyan}󱂵%f%b"
   else
     echo "%B%F{cyan}󰉋%f%b"
   fi
 }
 
-PS1='%B%F{blue} 󱍢 %f%b %B%F{magenta}%B%n $(dir_icon)  %B%F{red}%~%f%b${vcs_info_msg_0_} 
-%(?.%B%F{green}󰞔 .%F{red}󰁄 )%f%b '
+PS1='%B%F{blue} %f%b %B%F{magenta}%B%n $(dir_icon)  %B%F{red}%~%f%b${vcs_info_msg_0_} 
+%(?.%B%F{green} .%F{red} )%f%b '
 
 # command not found
 command_not_found_handler() {
@@ -230,6 +230,7 @@ eval "$(zoxide init zsh)"
 # ▀▀▀  ▀  ▀  ▀▀▀▀  ▀▀▀ ▀▀▀  ▀▀▀  ▀▀▀ ·▀▀▀ ▀▀▀ ·
 
 # fastfetch
+clear; fastfetch
 
 # fzf
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -255,9 +256,15 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # pnpm
+
 export PNPM_HOME="/home/pepito/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+
 # pnpm end
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
