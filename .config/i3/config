@@ -19,7 +19,7 @@ set $secondMonitor HDMI-2
 
 font pango: IosevkaTerm Nerd Font 10
 
-exec_always --no-startup-id bash ~/.config/polybar/start.sh &
+exec_always --no-startup-id bash ~/.config/polybar/starti3.sh &
 exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf &
 exec --no-startup-id 'udiskie -t' &
 exec --no-startup-id powermode-indicator &
