@@ -27,7 +27,8 @@ exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 exec --no-startup-id dunst &
 exec --no-startup-id nm-applet &
 # exec --no-startup-id hsetroot -cover $HOME/Pictures/Wallpapers/japan-house-anime.jpg &
-exec --no-startup-id hsetroot -cover $HOME/Pictures/wallpapers/wallpapers/misc/n4.png &
+# exec --no-startup-id hsetroot -cover $HOME/Pictures/wallpapers/wallpapers/misc/n4.png &
+exec --no-startup-id hsetroot -cover $HOME/Pictures/Wallpapers/gruvbear.jpeg &
 exec --no-startup-id unclutter --timeout 5 &
 exec --no-startup-id xrandr --output HDMI-A-0 --left-of eDP --auto --rotate left &
 exec --no-startup-id xscreensaver &
@@ -91,7 +92,7 @@ bindsym $mod+Shift+n exec --no-startup-id redshift -P -O 2600;
 
 bindsym $mod+Ctrl+s exec --no-startup-id scrot;
 
-bindsym $mod+f exec --no-startup-id qutebrowser;focus
+bindsym $mod+f exec --no-startup-id firefox;focus
 
 bindsym $mod+Control+f exec --no-startup-id thunar;focus
 
@@ -115,11 +116,11 @@ bindsym $mod+Shift+p exec --no-startup-id sh ~/.config/i3/scripts/Brightness dow
 
 floating_modifier $mod
 
-gaps inner 5
-gaps outer 5
+gaps inner 3
+gaps outer 3
 smart_gaps off
-for_window [class=".*"] border normal
-default_border pixel 0
+for_window [class="^.*"] border pixel 2
+default_border pixel 2
 
 workspace 1 output $firstMonitor
 workspace 2 output $firstMonitor
@@ -196,7 +197,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+g mode "gaps"
 
 # class                 border  backgr. text    indicato
-client.focused          #000000 #8DA3B9 #000000 #BDCBD9
+client.focused          #000000 #151515 #e1e2e1 #424242
 client.unfocused        #222222 #222222 #eeeeee #22222
 client.focused_inactive #222222 #222222 #282828 #222222
 client.placeholder      #222222 #222222 #eeeeee #22222
