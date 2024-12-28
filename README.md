@@ -15,7 +15,7 @@ cp -r ~/archDots/.config/* ~/.config/
 3. Copy the .zshrc and .tmux.conf files to home
 
 ```
-cp -r ~/archDots/.zshrc ~ && cp -r ~/archDots/.tmux.conf ~
+cp -r ~/archDots/.zshrc ~; cp -r ~/archDots/.tmux.conf ~
 ```
 
 4. Copy powermenu and wifimenu to .local/bin folder
