@@ -1,6 +1,5 @@
 configuration {
   show-icons:   true;
-  icon-theme:   "oomox-Tokyonight-Light";
   display-drun: "app: ";
   display-run: "run: ";
   display-window: "window: ";
@@ -13,15 +12,15 @@ configuration {
 @theme "/dev/null"
 
 * {
-    bg: #24283b;
-    hv: #9274ca; 
-    primary: #C5C8C6; 
-    ug: #0B2447;
+    bg: #151515;
+    hv: #A988B0; 
+    primary: #A988B0; 
+    ug: #8C977D;
     font: "IosevkaTerm Nerd Font 13";
     background-color: @bg;
     border: 0px;
-    kl: #7aa2f7;
-    black: #000000;
+    kl: #E8E3E3;
+    black: #151515;
 
     transparent: rgba(46,52,64,0);
 
