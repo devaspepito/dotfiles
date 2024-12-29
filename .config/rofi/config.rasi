@@ -1,9 +1,9 @@
 configuration {
   show-icons:   true;
-  display-drun: "app: ";
-  display-run: "run: ";
-  display-window: "window: ";
-  display-emoji: "emoji: ";
+  display-drun: " : ";
+  display-run: " : ";
+  display-window: " : ";
+  display-emoji: "󰞅 : ";
   drun-display-format: "{name}";
   font: "IosevkaTerm Nerd Font 13";
   modi: "window,run,drun,emoji";
