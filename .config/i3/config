@@ -98,6 +98,8 @@ bindsym $mod+Control+f exec --no-startup-id thunar;focus
 
 bindsym $mod+d exec --no-startup-id discord;focus
 
+bindsym Mod1+s exec --no-startup-id session-messenger-desktop;focus
+
 bindsym $mod+c exec --no-startup-id code;focus
 
 bindsym $mod+control+l exec --no-startup-id zathura;focus
