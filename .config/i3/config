@@ -76,7 +76,7 @@ bindsym $mod+v split v
 bindsym $mod+Shift+f fullscreen toggle
 
 bindsym $mod+s layout stacking
-bindsym $mod+z layout tabbed
+bindsym $mod+Shift+z layout tabbed
 bindsym $mod+semicolon layout toggle split
 
 bindsym $mod+space focus mode_toggle
@@ -102,7 +102,7 @@ bindsym Mod1+s exec --no-startup-id session-messenger-desktop;focus
 
 bindsym $mod+c exec --no-startup-id code;focus
 
-bindsym $mod+control+l exec --no-startup-id zathura;focus
+bindsym $mod+z exec --no-startup-id zathura;focus
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id sh ~/.config/i3/scripts/Volume --inc
 bindsym XF86AudioLowerVolume exec --no-startup-id sh ~/.config/i3/scripts/Volume --dec
