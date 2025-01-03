@@ -25,22 +25,22 @@ palette = "paradise"
 symbol = ' '
 
 [palettes.paradise]
-arrow = "#DCD7BA"      # Light bone color, soft and visible
-os = "#C4B28A"         # Warm yellow tone of dragonYellow
-directory = "#8BA4B0"  # Soft sky blue, dragonBlue2
-git = "#C4746E"        # Soft red, dragonRed
-duration = "#957FB8"   # Soft purple, oniViolet
-text_color = "#C5C9C5" # Light color, dragonWhite
-text_light = "#2A2A37" # Dark gray, sumiInk4
+arrow = "#DCD7BA"
+os = "#C4B28A"
+directory = "#8BA4B0"
+git = "#C4746E"
+duration = "#957FB8"
+text_color = "#C5C9C5"
+text_light = "#2A2A37"
 
 [character]
-success_symbol = "[ ](fg:#A3BE8C)" # Mustache in dark pink tone
-error_symbol = "[ ](fg:red)"       # Mustache in red if there is an error
+success_symbol = "[ ](fg:green)"
+error_symbol = "[ ](fg:red)"
 
 [username]
 style_user = 'bold os'
 style_root = 'bold os_admin'
-format = '[ ](fg:#8DA3B9) [$user](fg:#A988B0) '
+format = '[ ](fg:blue) [$user](fg:#A988B0) '
 disabled = false
 show_always = true
 
@@ -125,5 +125,5 @@ format = '[[ $symbol ($version) ](fg:#FF9E3B)]($style)'
 
 [time]
 disabled = false
-time_format = "%R"                           # Hour:Minute Format
+time_format = "%R" # Hour:Minute Format
 format = '[[   $time ](fg:#8BA4B0)]($style)'
