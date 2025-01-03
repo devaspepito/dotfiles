@@ -1,0 +1,3 @@
+[submodule "~/.config/ghostty"]
+	path = ~/.config/ghostty
+	url = git@github.com:devaspepito/ghostty-cfg.git
