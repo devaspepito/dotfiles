@@ -2,7 +2,7 @@
 monitor = 0
 follow = mouse
 
-width = (300, 400)
+width = (200, 300)
 #height = (0, 200)
 origin = top-right
 offset = (20, 60)
@@ -16,23 +16,23 @@ corner_radius = 6
 
 gap_size = 4
 separator_height = 1
-separator_color = "#abb2bf"
+separator_color = "#8B8989"
 
 padding = 15
 horizontal_padding = 15
 text_icon_padding = 0
 
 frame_width = 0
-frame_color = "#222330"
+frame_color = "#607E9A"
 
 sort = no
 idle_threshold = 0
 
-font = JetBrainsMono NF Medium 9
+font = IosevkaTerm Nerd Font 9
 line_height = 0
 
 markup = full
-format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#7aa2f7'>%s</span>\n%b"
+format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#e8e3e3'>%s</span>\n%b"
 alignment = center
 vertical_alignment = center
 
@@ -45,7 +45,7 @@ hide_duplicate_count = true
 show_indicators = yes
 
 enable_recursive_icon_lookup = true
-icon_theme = "TokyoNight-SE, Adwaita"
+# icon_theme = "TokyoNight-SE, Adwaita"
 icon_position = left
 min_icon_size = 60
 max_icon_size = 90
@@ -54,7 +54,7 @@ icon_corner_radius = 6
 sticky_history = yes
 history_length = 25
 
-#dmenu = /usr/bin/rofi -config "$HOME/.config/rofi/notification.rasi" -dmenu -p dunst:
+# dmenu = /usr/bin/rofi -config "$HOME/.config/rofi/notification.rasi" -dmenu -p dunst:
 browser = /usr/bin/xdg-open
 always_run_script = true
 ignore_dbusclose = false
@@ -77,15 +77,15 @@ class = Dunst
 
 [urgency_low]
 timeout = 3
-background = "#1a1b26"
-foreground = "#9ece6a"
+background = "#151515"
+foreground = "#8C977D"
 
 [urgency_normal]
 timeout = 5
-background = "#1a1b26"
-foreground = "#a9b1d6"
+background = "#151515"
+foreground = "#e8e3e3"
 
 [urgency_critical]
 timeout = 0
 background = "#1a1b26"
-foreground = "#f7768e"
+foreground = "#B66467"
