@@ -1,3 +1,4 @@
 pkill polybar
-polybar -r miniTopI3 &
-polybar -r miniBottomI3 &
+polybar -r i3 &
+# polybar -r miniTopI3 &
+# polybar -r miniBottomI3 &
