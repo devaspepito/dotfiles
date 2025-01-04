@@ -27,8 +27,8 @@ exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 exec --no-startup-id dunst &
 exec --no-startup-id nm-applet --indicator &
 # exec --no-startup-id hsetroot -cover $HOME/Pictures/Wallpapers/japan-house-anime.jpg &
-# exec --no-startup-id hsetroot -cover $HOME/Pictures/wallpapers/wallpapers/misc/n4.png &
-exec --no-startup-id hsetroot -cover $HOME/Pictures/Wallpapers/gruvbear.jpeg &
+# exec --no-startup-id hsetroot -cover $HOME/Pictures/Wallpapers/gruvbear.jpeg &
+exec --no-startup-id hsetroot -cover $HOME/Pictures/wallpapers/wallpapers/wall-selection/china.jpg &
 exec --no-startup-id unclutter --timeout 5 &
 exec --no-startup-id xrandr --output HDMI-A-0 --left-of eDP --auto --rotate left &
 exec --no-startup-id xscreensaver &
