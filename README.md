@@ -23,3 +23,7 @@ cp -r ~/dotfiles/.zshrc ~
 ```
 cp -r ~/dotfiles/.local/bin/* ~/.local/bin/
 ```
+
+# images
+
+![desktop](.screenshots/desktop.png)
