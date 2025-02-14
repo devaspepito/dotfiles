@@ -1,0 +1,19 @@
+/* 
+  bg - background
+  fg - foreground
+  br - border
+*/
+
+configuration {
+  show-icons:   false;
+  font:                     "IosevkaTerm Nerd Font 11";
+}
+
+* {
+  main-bg:        #151515;
+  main-fg:        #607E9A;
+  main-br:        #8DA3B9;
+  input-bg:       #020202;
+  select-bg:      #8DA3B9;
+  select-fg:      #151515;
+}
