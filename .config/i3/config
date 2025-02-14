@@ -19,7 +19,7 @@ set $secondMonitor HDMI-2
 
 font pango: IosevkaTerm Nerd Font 10
 
-exec_always --no-startup-id bash ~/.config/polybar/starti3.sh &
+exec_always --no-startup-id bash ~/.config/polybar/start.sh &
 exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf &
 exec_always --no-startup-id bash ~/.config/i3/scripts/toggle-monitor-grayscale.sh &
 exec_always --no-startup-id setxkbmap pepito &
@@ -45,8 +45,10 @@ bindsym $mod+x exec ~/.config/rofi/scripts/powermenu.sh
 bindsym $mod+p exec picom --config ~/.config/i3/picom/picom.conf
 bindsym $mod+Mod1+p exec pkill picom
 
-bindsym Mod1+p exec bash ~/.config/polybar/starti3.sh
+bindsym Mod1+p exec bash ~/.config/polybar/start.sh
 bindsym Mod1+Shift+p exec pkill polybar
+
+bindsym $mod+Ctrl+g exec bash ~/.config/i3/scripts/toggle-monitor-grayscale.sh
 
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+q exit
