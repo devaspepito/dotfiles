@@ -21,27 +21,32 @@ font pango: IosevkaTerm Nerd Font 10
 
 exec_always --no-startup-id bash ~/.config/polybar/starti3.sh &
 exec_always --no-startup-id picom --config ~/.config/i3/picom/picom.conf &
+exec_always --no-startup-id bash ~/.config/i3/scripts/toggle-monitor-grayscale.sh &
+exec_always --no-startup-id setxkbmap pepito &
 exec --no-startup-id udiskie -t &
 exec --no-startup-id powermode-indicator &
 exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 exec --no-startup-id dunst &
 exec --no-startup-id nm-applet --indicator &
-# exec --no-startup-id hsetroot -cover $HOME/Pictures/Wallpapers/japan-house-anime.jpg &
-# exec --no-startup-id hsetroot -cover $HOME/Pictures/Wallpapers/gruvbear.jpeg &
-exec --no-startup-id hsetroot -cover $HOME/Pictures/wallpapers/wallpapers/wall-selection/china.jpg &
+exec --no-startup-id feh --bg-fill $HOME/Pictures/wallpapers/the-creation-of-adan.jpg &
 exec --no-startup-id unclutter --timeout 5 &
-exec --no-startup-id xrandr --output HDMI-A-0 --left-of eDP --auto --rotate left &
+exec --no-startup-id xrandr --output HDMI1 --mode 1024x768 --right-of eDP1 || xrandr --output HDMI1 --off
 exec --no-startup-id xscreensaver &
 
 focus_follows_mouse no
 
-bindsym $mod+o exec --no-startup-id rofi -show drun
-bindsym $mod+Shift+o exec --no-startup-id rofi -show run
-bindsym $mod+ctrl+o exec --no-startup-id rofi -show window
-bindsym Mod1+Control+r exec --no-startup-id rofi-theme-selector
-bindsym Mod1+e exec --no-startup-id rofi -show emoji -modi emoji
-bindsym $mod+w exec $HOME/.local/bin/wifimenu
-bindsym $mod+x exec $HOME/.local/bin/powermenu
+bindsym $mod+o exec --no-startup-id ~/.config/rofi/scripts/rofiapp.sh
+bindsym $mod+Shift+o exec --no-startup-id ~/.config/rofi/scripts/appslauncher.sh
+bindsym $mod+ctrl+o exec --no-startup-id ~/.config/rofi/scripts/windowrofi.sh
+bindsym Mod1+o exec --no-startup-id ~/.config/rofi/scripts/emoji.sh
+bindsym $mod+w exec ~/.config/polybar/scripts/wifi-menu.sh
+bindsym $mod+x exec ~/.config/rofi/scripts/powermenu.sh
+
+bindsym $mod+p exec picom --config ~/.config/i3/picom/picom.conf
+bindsym $mod+Mod1+p exec pkill picom
+
+bindsym Mod1+p exec bash ~/.config/polybar/starti3.sh
+bindsym Mod1+Shift+p exec pkill polybar
 
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+q exit
