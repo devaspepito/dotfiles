@@ -18,12 +18,16 @@ cp -r ~/dotfiles/.config/* ~/.config/
 cp -r ~/dotfiles/.zshrc ~
 ```
 
-4. Copy powermenu and wifimenu to .local/bin folder
+# Images
 
-```
-cp -r ~/dotfiles/.local/bin/* ~/.local/bin/
-```
+##### 2 Monitors in desktops
 
-# images
+![desktops](.screenshots/2-monitors-desktops.png)
 
-![desktop](.screenshots/desktop.png)
+##### 2 Monitors 1st in terminal 2nd in desktop
+
+![2monitors-terminal-desktop](.screenshots/2-monitors-2nd_desktop.png)
+
+##### 2 Monitors 1st in terminal 2nd in web browser
+
+![2monitors-terminal-web_browser](.screenshots/2-monitors.png)
