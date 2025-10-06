@@ -3,7 +3,7 @@
 # polybar -r i3 &
 
 # Verifica si el monitor externo está conectado
-if xrandr | grep "HDMI1 connected"; then
+if xrandr | grep "HDMI-1 connected"; then
     # Si está conectado, ejecuta configuración para dos monitores
     pkill polybar
     polybar -r i3h &
