@@ -20,7 +20,6 @@ set $secondMonitor HDMI-2
 font pango: IosevkaTerm Nerd Font 10
 
 exec_always --no-startup-id bash ~/.config/polybar/start.sh &
-exec_always --no-startup-id bash ~/.config/i3/scripts/toggle-monitor-grayscale.sh &
 exec_always --no-startup-id setxkbmap pepito &
 exec --no-startup-id picom --config ~/.config/i3/picom/picom.conf &
 exec --no-startup-id udiskie -t &
@@ -28,10 +27,13 @@ exec --no-startup-id powermode-indicator &
 exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 exec --no-startup-id dunst &
 exec --no-startup-id nm-applet --indicator &
-exec --no-startup-id feh --bg-fill $HOME/Pictures/wallpapers/the-creation-of-adan.jpg &
+# exec --no-startup-id feh --bg-fill $HOME/Pictures/wallpapers/the-creation-of-adan.jpg &
+exec --no-startup-id feh --bg-fill $HOME/Pictures/wallpapers/wallpapers-minimalistics/MacOS-02.jpg &
+# exec --no-startup-id feh --bg-fill --randomize $HOME/Pictures/arch-wallpapers &
 exec --no-startup-id unclutter --timeout 5 &
 exec --no-startup-id xrandr --output HDMI1 --mode 1024x768 --right-of eDP1 || xrandr --output HDMI1 --off
 exec --no-startup-id xscreensaver &
+exec --no-startup-id betterlockscreen -u $HOME/Pictures/wallpapers/the-creation-of-adan.jpg &
 
 focus_follows_mouse no
 
@@ -88,8 +90,8 @@ bindsym $mod+semicolon layout toggle split
 
 bindsym $mod+space focus mode_toggle
 
-bindsym $mod+Return exec --no-startup-id ghostty;
-bindsym $mod+Shift+Return exec --no-startup-id kitty;
+bindsym $mod+Return exec --no-startup-id kitty;
+bindsym $mod+Shift+Return exec --no-startup-id ghostty;
 
 bindsym $mod+Shift+s exec --no-startup-id screenkey;
 bindsym $mod+Mod1+s exec --no-startup-id pkill screenkey;
@@ -99,7 +101,7 @@ bindsym $mod+Shift+n exec --no-startup-id redshift -P -O 2600;
 
 bindsym $mod+Ctrl+s exec --no-startup-id scrot;
 
-bindsym $mod+f exec --no-startup-id firefox;focus
+bindsym $mod+f exec --no-startup-id zen-browser;focus
 
 bindsym $mod+Control+f exec --no-startup-id thunar;focus
 
@@ -131,16 +133,16 @@ smart_gaps off
 for_window [class="^.*"] border pixel 2
 default_border pixel 2
 
-workspace 1 output $firstMonitor
-workspace 2 output $firstMonitor
-workspace 3 output $firstMonitor
-workspace 4 output $firstMonitor
-workspace 5 output $firstMonitor
-workspace 6 output $secondMonitor
-workspace 7 output $secondMonitor
-workspace 8 output $secondMonitor
-workspace 9 output $secondMonitor
-workspace 10 output $secondMonitor
+workspace 1 output $secondMonitor
+workspace 2 output $secondMonitor
+workspace 3 output $secondMonitor
+workspace 4 output $secondMonitor
+workspace 5 output $secondMonitor
+workspace 6 output $firstMonitor
+workspace 7 output $firstMonitor
+workspace 8 output $firstMonitor
+workspace 9 output $firstMonitor
+workspace 10 output $firstMonitor
 
 set $ws1 "1"
 set $ws2 "2"
