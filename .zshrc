@@ -253,6 +253,16 @@ esac
 
 # pnpm end
 
+# bun
+
+export BUN_HOME="/home/pepito/.bun/bin:$PATH"
+case ":$PATH:" in 
+  *":$BUN_HOME:"*) ;;
+  *) export PATH="$BUN_HOME:$PATH" ;;
+esac
+
+# bun end
+
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
