@@ -1,141 +1,268 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# vars
+export SUDO_PROMPT="If you want continue 
+type your password %u: "
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="archcraft"
+# load engine
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME="archcraft"
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+autoload -Uz compinit
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+for dump in ~/.config/zsh/zcompdump(N.mh+24); do
+  compinit -d ~/.config/zsh/zcompdump
+done
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# On-demand rehash
-zshcache_time="$(date +%s%N)"
+compinit -C -d ~/.config/zsh/zcompdump
 
 autoload -Uz add-zsh-hook
+autoload -Uz vcs_info
+precmd () { vcs_info }
+_comp_options+=(globdots)
 
-rehash_precmd() {
-  if [[ -a /var/cache/zsh/pacman ]]; then
-    local paccache_time="$(date -r /var/cache/zsh/pacman +%s%N)"
-    if (( zshcache_time < paccache_time )); then
-      rehash
-      zshcache_time="$paccache_time"
-    fi
-  fi
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} 'ma=48;5;197;1'
+zstyle ':completion:*' matcher-list \
+		'm:{a-zA-Z}={A-Za-z}' \
+		'+r:|[._-]=* r:|=*' \
+		'+l:|=*'
+zstyle ':completion:*:warnings' format "%B%F{red}No matches for:%f %F{magenta}%d%b"
+zstyle ':completion:*:descriptions' format '%F{yellow}[-- %d --]%f'
+zstyle ':vcs_info:*' formats ' %B%F{red} %b%f'
+
+# zsh options
+setopt AUTOCD              # change directory just by typing its name
+setopt PROMPT_SUBST        # enable command substitution in prompt
+setopt MENU_COMPLETE       # Automatically highlight first element of completion menu
+setopt LIST_PACKED		   # The completion menu takes less space.
+setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
+setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
+
+# prompt
+eval "$(starship init zsh)"
+
+# command not found
+command_not_found_handler() {
+	printf "%s%s? I don't know what is it\n" "$acc" "$0" >&2
+    return 127
 }
 
-add-zsh-hook -Uz precmd rehash_precmd
+#  ▄▄▄·▄▄▌  ▄• ▄▌ ▄▄ • ▪   ▐ ▄ .▄▄ · 
+# ▐█ ▄███•  █▪██▌▐█ ▀ ▪██ •█▌▐█▐█ ▀. 
+#  ██▀·██▪  █▌▐█▌▄█ ▀█▄▐█·▐█▐▐▌▄▀▀▀█▄
+# ▐█▪·•▐█▌▐▌▐█▄█▌▐█▄▪▐█▐█▌██▐█▌▐█▄▪▐█
+# .▀   .▀▀▀  ▀▀▀ ·▀▀▀▀ ▀▀▀▀▀ █▪ ▀▀▀▀ 
 
-# omz
-alias zshconfig="geany ~/.zshrc"
-alias ohmyzsh="thunar ~/.oh-my-zsh"
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/zsh-sudo/sudo.plugin.zsh
 
-# ls
-alias l='eza -lh --icons'
-alias ls='eza --icons'
-alias ll='eza -lah --icons'
-alias la='eza -A --icons'
-alias lm='eza -m --icons'
-alias lr='eza -R --icons'
-alias lg='eza -l --group-directories-first --icons'
+# User configuration
+export MANPATH="/usr/local/man:$MANPATH"
 
-# git
-alias gcl='git clone --depth 1'
-alias gi='git init'
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+
+
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+
+# bin path
+export PATH=$PATH:/home/pepito/.local/bin
+
+# History
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+#·▄▄▄▄• ▄▌ ▐ ▄  ▄▄· ▄▄▄▄▄▪         ▐ ▄ .▄▄ · 
+#▐▄▄·█▪██▌•█▌▐█▐█ ▌▪•██  ██ ▪     •█▌▐█▐█ ▀. 
+#██▪ █▌▐█▌▐█▐▐▌██ ▄▄ ▐█.▪▐█· ▄█▀▄ ▐█▐▐▌▄▀▀▀█▄
+#██▌.▐█▄█▌██▐█▌▐███▌ ▐█▌·▐█▌▐█▌.▐▌██▐█▌▐█▄▪▐█
+#▀▀▀  ▀▀▀ ▀▀ █▪·▀▀▀  ▀▀▀ ▀▀▀ ▀█▄▀▪▀▀ █▪ ▀▀▀▀ 
+
+# fzf improvement
+function fzf-lovely(){
+
+if [ "$1" = "h" ]; then
+  fzf -m --reverse --preview-window down:20 --preview '[[ $(file --mime {}) =~ binary ]] &&
+    echo {} is a binary file ||
+    (bat --style=numbers --color=always {} ||
+    highlight -O ansi -l {} ||
+    coderay {} ||
+    rougify {} ||
+    cat {}) 2> /dev/null | head -500'
+
+else
+  fzf -m --preview '[[ $(file --mime {}) =~ binary ]] &&
+    echo {} is a binary file ||
+    (bat --style=numbers --color=always {} ||
+    highlight -O ansi -l {} ||
+    coderay {} ||
+    rougify {} ||
+    cat {}) 2> /dev/null | head -500'
+fi
+}
+
+
+# ▄▄▄     • ▌ ▄ ·.    ▄ •▄ 
+# ▀▄ █·   ·██ ▐███▪   █▌▄▌▪
+# ▐▀▀▄    ▐█ ▌▐▌▐█·   ▐▀▀▄·
+# ▐█•█▌   ██ ██▌▐█▌   ▐█.█▌
+# .▀  ▀   ▀▀  █▪▀▀▀   ·▀  ▀
+
+function rmk(){
+	scrub -p dod $1
+	shred -zun 10 -v $1
+}
+
+#  ▄▄▄· ▄▄▌  ▪   ▄▄▄· .▄▄ · ▄▄▄ ..▄▄ · 
+# ▐█ ▀█ ██•  ██ ▐█ ▀█ ▐█ ▀. ▀▄.▀·▐█ ▀. 
+# ▄█▀▀█ ██▪  ▐█·▄█▀▀█ ▄▀▀▀█▄▐▀▀▪▄▄▀▀▀█▄
+# ▐█ ▪▐▌▐█▌▐▌▐█▌▐█ ▪▐▌▐█▄▪▐█▐█▄▄▌▐█▄▪▐█
+#  ▀  ▀ .▀▀▀ ▀▀▀ ▀  ▀  ▀▀▀▀  ▀▀▀  ▀▀▀▀ 
+alias lt=utd
+
+alias cat=bat
+
+alias clock="tty-clock -c -C 4 -f '%d/%m/%Y'"
+
+alias cls=clear
+alias cl=clear
+alias lc=clear
+
+alias g=git
+alias gc='git clone'
 alias ga='git add'
-alias gc='git commit -m'
-alias gp='git push origin master'
+alias gaa='git add .'
+alias gcm='git commit'
+alias gc-m='git commit -m'
+alias gp='git push'
+alias gpl='git pull'
+alias gst='git status'
+alias gbm='git branch -M main'
+alias gb='git branch'
+alias grao='git remote add origin'
+alias gch='git checkout'
+alias gi='git init'
+
+alias ls='eza -a --icons'
+alias l='eza -a --icons'
+alias ll='eza -l --icons -a'
+alias ltree='eza --tree --level=2 --icons'
+alias ..='cd ..'
+alias ...=cd
+alias n=nvim
+alias neo=nvim
+# alias vim=nvim
+
+alias q=exit
+alias r=ranger
+alias b=btop
+alias fixhour='sudo ntpd -qg && sudo hwclock -w'
+alias udb='sudo updatedb'
+alias sozsh='source ~/.zshrc'
+alias mion='amixer sset Capture cap'
+alias mioff='amixer sset Capture nocap'
+
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
+alias sstd='sudo systemctl start docker.socket && sudo systemctl start docker.service'
+alias sspd='sudo systemctl stop docker.socket && sudo systemctl stop docker.service'
+
+alias sstms='sudo systemctl start mssql-server'
+alias sspms='sudo systemctl stop mssql-server'
+
+alias ssttor='sudo systemctl start tor'
+alias ssptor='sudo systemctl stop tor'
+
+alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias mainten="paru -Sc --noconfirm && sudo pacman -Scc --noconfirm"
+alias update="paru -Syu --noconfirm && sudo pacman -Syu --noconfirm"
+alias mirrors="sudo reflector --verbose --latest 10 --country 'Colombia' --age 6 --sort rate --save /etc/pacman.d/mirrorlist"
+
+alias sysfetch="clear && bash /home/pepito/.local/bin/sysfetch"
+
+alias swof="sudo swapoff -a"
+alias swon="sudo swapon -a"
+
+alias yt="mov-cli -s youtube"
+alias ani="mov-cli -s anime"
+
+# Gentleman Alias
+alias fzfbat='fzf --preview="bat --theme=paradise --color=always {}"'
+alias fzfnvim='nvim $(fzf --preview="bat --theme=paradise --color=always {}")'
+
+
+#·▄▄▄▄•      ▐▄• ▄ ▪  ·▄▄▄▄  ▄▄▄ .
+#▪▀·.█▌▪      █▌█▌▪██ ██▪ ██ ▀▄.▀·
+#▄█▀▀▀• ▄█▀▄  ·██· ▐█·▐█· ▐█▌▐▀▀▪▄
+#█▌▪▄█▀▐█▌.▐▌▪▐█·█▌▐█▌██. ██ ▐█▄▄▌
+#·▀▀▀ • ▀█▄▀▪•▀▀ ▀▀▀▀▀▀▀▀▀▀•  ▀▀▀ 
+
+eval "$(zoxide init zsh)"
+
+# ·▄▄▄ ▄▄▄· .▄▄ · ▄▄▄▄▄·▄▄▄▄▄▄ .▄▄▄▄▄ ▄▄·  ▄ .▄
+# ▐▄▄·▐█ ▀█ ▐█ ▀. •██  ▐▄▄·▀▄.▀·•██  ▐█ ▌▪██▪▐█
+# ██▪ ▄█▀▀█ ▄▀▀▀█▄ ▐█.▪██▪ ▐▀▀▪▄ ▐█.▪██ ▄▄██▀▐█
+# ██▌.▐█ ▪▐▌▐█▄▪▐█ ▐█▌·██▌.▐█▄▄▌ ▐█▌·▐███▌██▌▐▀
+# ▀▀▀  ▀  ▀  ▀▀▀▀  ▀▀▀ ▀▀▀  ▀▀▀  ▀▀▀ ·▀▀▀ ▀▀▀ ·
+
+# fastfetch
+clear; fastfetch
+
+# fzf
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
+
+# laravel
+export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+
+# spicetify
+export PATH=$PATH:/home/pepito/.spicetify
+
+# nvm directory
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ███████╗███╗   ██╗██████╗      ██████╗ ███████╗    ██████╗  ██████╗ ████████╗███████╗
+# ██╔════╝████╗  ██║██╔══██╗    ██╔═══██╗██╔════╝    ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝
+# █████╗  ██╔██╗ ██║██║  ██║    ██║   ██║█████╗      ██║  ██║██║   ██║   ██║   ███████╗
+# ██╔══╝  ██║╚██╗██║██║  ██║    ██║   ██║██╔══╝      ██║  ██║██║   ██║   ██║   ╚════██║
+# ███████╗██║ ╚████║██████╔╝    ╚██████╔╝██║         ██████╔╝╚██████╔╝   ██║   ███████║
+# ╚══════╝╚═╝  ╚═══╝╚═════╝      ╚═════╝ ╚═╝         ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝
+
+
+# pnpm
+
+export PNPM_HOME="/home/pepito/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# pnpm end
+
+# bun
+
+export BUN_HOME="/home/pepito/.bun/bin:$PATH"
+case ":$PATH:" in 
+  *":$BUN_HOME:"*) ;;
+  *) export PATH="$BUN_HOME:$PATH" ;;
+esac
+
+# bun end
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
