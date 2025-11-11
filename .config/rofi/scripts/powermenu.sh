@@ -1,30 +1,115 @@
 #!/usr/bin/env bash
 
-config="$HOME/.config/rofi/powermenu.rasi"
+# Import Current Theme
+DIR="$HOME/.config"
+RASI="$DIR/rofi/powermenu.rasi"
+CNFR="$DIR/rofi/confirm.rasi"
 
-actions=$(echo -e "  Lock\n  PowerOff\n  Reboot\n$(printf '\u200A')  Suspend\n  Hibernate\n  Logout")
+# Theme Elements
+prompt="$(hostname) ($(echo $DESKTOP_SESSION))"
+mesg="Uptime : $(uptime -p | sed -e 's/up //g')"
 
-# Display logout menu
-selected_option=$(echo -e "$actions" | rofi -dmenu -i -config "${config}" || pkill -x rofi)
+# Options
+layout=$(cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2)
+if [[ "$layout" == 'NO' ]]; then
+  option_1=" Lock"
+  option_2=" Logout"
+  option_3=" Suspend"
+  option_4=" Hibernate"
+  option_5=" Reboot"
+  option_6=" Shutdown"
+else
+  option_1=""
+  option_2=""
+  option_3=""
+  option_4=""
+  option_5=""
+  option_6=""
+fi
+cnflayout=$(cat ${CNFR} | grep 'USE_ICON' | cut -d'=' -f2)
+if [[ "$cnflayout" == 'NO' ]]; then
+  yes=' Yes'
+  no=' No'
+else
+  yes=''
+  no=''
+fi
 
-# Perform actions based on the selected option
-case "$selected_option" in
-*Lock)
-  betterlockscreen -l dim
+# Rofi CMD
+rofi_cmd() {
+  rofi -dmenu \
+    -p "$prompt" \
+    -mesg "$mesg" \
+    -markup-rows \
+    -theme ${RASI}
+}
+
+# Pass variables to rofi dmenu
+run_rofi() {
+  echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5\n$option_6" | rofi_cmd
+}
+
+# Confirmation CMD
+confirm_cmd() {
+  rofi -dmenu \
+    -p 'Confirmation' \
+    -mesg 'Are you Sure Bro?' \
+    -selected-row 1 \
+    -no-click-to-exit \
+    -theme ${CNFR}
+}
+
+# Ask for confirmation
+confirm_exit() {
+  echo -e "$yes\n$no" | confirm_cmd
+}
+
+# Confirm and execute
+confirm_run() {
+  selected="$(confirm_exit)"
+  if [[ "$selected" == "$yes" ]]; then
+    ${1} && ${2} && ${3}
+  else
+    exit
+  fi
+}
+
+# Execute Command
+run_cmd() {
+  if [[ "$1" == '--opt1' ]]; then
+    betterlockscreen --lock
+  elif [[ "$1" == '--opt2' ]]; then
+    confirm_run 'i3-msg exit'
+  elif [[ "$1" == '--opt3' ]]; then
+    confirm_run 'mpc -q pause' 'pulsemixer --mute' 'betterlockscreen --suspend'
+  elif [[ "$1" == '--opt4' ]]; then
+    confirm_run 'systemctl hibernate'
+  elif [[ "$1" == '--opt5' ]]; then
+    confirm_run 'systemctl reboot'
+  elif [[ "$1" == '--opt6' ]]; then
+    confirm_run 'systemctl poweroff'
+  fi
+}
+
+# Actions
+chosen="$(run_rofi)"
+case ${chosen} in
+$option_1)
+  run_cmd --opt1
   ;;
-*PowerOff)
-  systemctl poweroff
+$option_2)
+  run_cmd --opt2
   ;;
-*Reboot)
-  systemctl reboot
+$option_3)
+  run_cmd --opt3
   ;;
-*Suspend)
-  systemctl suspend
+$option_4)
+  run_cmd --opt4
   ;;
-*Hibernate)
-  systemctl hibernate
+$option_5)
+  run_cmd --opt5
   ;;
-*Logout)
-  i3-msg exit
+$option_6)
+  run_cmd --opt6
   ;;
 esac
