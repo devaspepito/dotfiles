@@ -130,7 +130,9 @@ function rmk(){
 # ▄█▀▀█ ██▪  ▐█·▄█▀▀█ ▄▀▀▀█▄▐▀▀▪▄▄▀▀▀█▄
 # ▐█ ▪▐▌▐█▌▐▌▐█▌▐█ ▪▐▌▐█▄▪▐█▐█▄▄▌▐█▄▪▐█
 #  ▀  ▀ .▀▀▀ ▀▀▀ ▀  ▀  ▀▀▀▀  ▀▀▀  ▀▀▀▀ 
-alias lt=utd
+alias lt=taskbook
+
+alias icat='kitty +kitten icat'
 
 alias cat=bat
 
@@ -162,8 +164,9 @@ alias ltree='eza --tree --level=2 --icons'
 alias ..='cd ..'
 alias ...=cd
 alias n=nvim
+alias v=nvim
 alias neo=nvim
-# alias vim=nvim
+alias vi=vim
 
 alias q=exit
 alias r=ranger
@@ -178,9 +181,6 @@ alias dcu='docker compose up -d'
 alias dcd='docker compose down'
 alias sstd='sudo systemctl start docker.socket && sudo systemctl start docker.service'
 alias sspd='sudo systemctl stop docker.socket && sudo systemctl stop docker.service'
-
-alias sstms='sudo systemctl start mssql-server'
-alias sspms='sudo systemctl stop mssql-server'
 
 alias ssttor='sudo systemctl start tor'
 alias ssptor='sudo systemctl stop tor'
@@ -218,14 +218,11 @@ eval "$(zoxide init zsh)"
 # ▀▀▀  ▀  ▀  ▀▀▀▀  ▀▀▀ ▀▀▀  ▀▀▀  ▀▀▀ ·▀▀▀ ▀▀▀ ·
 
 # fastfetch
-clear; fastfetch
+# clear; fastfetch
 
 # fzf
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fzf --zsh)"
-
-# laravel
-export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 # spicetify
 export PATH=$PATH:/home/pepito/.spicetify
@@ -241,7 +238,6 @@ export NVM_DIR="$HOME/.nvm"
 # ██╔══╝  ██║╚██╗██║██║  ██║    ██║   ██║██╔══╝      ██║  ██║██║   ██║   ██║   ╚════██║
 # ███████╗██║ ╚████║██████╔╝    ╚██████╔╝██║         ██████╔╝╚██████╔╝   ██║   ███████║
 # ╚══════╝╚═╝  ╚═══╝╚═════╝      ╚═════╝ ╚═╝         ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝
-
 
 # pnpm
 
@@ -262,7 +258,3 @@ case ":$PATH:" in
 esac
 
 # bun end
-
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
